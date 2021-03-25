@@ -27,5 +27,5 @@ public class Problem1470 {
         }
         return result;
     }
-
+  //O(n)
 }

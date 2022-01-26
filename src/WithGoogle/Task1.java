@@ -24,7 +24,21 @@ public class Task1 {
         int[] result5 = solution(array5, 2);
         System.out.println(Arrays.toString(result5));
 
+        System.out.println("=======================");
 
+        int[] result11 = solution2(array1, 0);
+        System.out.println(Arrays.toString(result11));
+        int[] result12 = solution2(array2, 1);
+        System.out.println(Arrays.toString(result12));
+        int[] result13 = solution2(array3, 1);
+        System.out.println(Arrays.toString(result13));
+        int[] result14 = solution2(array4, 2);
+        System.out.println(Arrays.toString(result14));
+        int[] result15 = solution2(array5, 2);
+        System.out.println(Arrays.toString(result15));
+
+        //SOLUTION:
+        //solution2() has passed all tests!
     }
 
     public static int[] solution(int[] data, int n) {
@@ -62,6 +76,8 @@ public class Task1 {
         return result;
     }
 
+
+
     public static int[] solution1(int[] arr, int times) {
         List<Integer> list = new ArrayList<>();
         Map<Integer, Integer> map = new LinkedHashMap<>();//number, times
@@ -93,4 +109,90 @@ public class Task1 {
         return result;
     }
 
+    public static int[] solution2(int[] data, int n) {
+        MyMap[] map = new MyMap[data.length];
+
+        for (int i = 0; i < map.length; i++) {
+            map[i] = new MyMap();
+        }
+
+        for (int key : data) {
+            if (containsKey(map, key)) {
+                put(map, key, (get(map, key) + 1));
+            } else {
+                put(map, key, 1);
+            }
+        }
+
+        int result[] = new int[0];
+
+        for (int i = 0; i < data.length; i++) {
+            int timesForKey = get(map, data[i]);
+            if (timesForKey <= n) {
+                result = addToArray(result, data[i]);
+
+            }
+        }
+
+        return result;
+    }
+
+    private static class MyMap {
+        int key;
+        int times;
+
+        public MyMap() {
+            key = -1;
+            times = -1;
+        }
+    }
+
+    private static boolean containsKey(MyMap[] map, int key) {
+        for (MyMap m : map) {
+            if (m != null && m.key == key) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static void put(MyMap[] map, int key, int value) {
+        if (containsKey(map, key)) {
+            for (MyMap m : map) {
+                if (m.key == key) {
+                    m.times = value;
+                }
+            }
+        } else {
+            for (MyMap m : map) {
+                if (m.key == -1) {
+                    m.key = key;
+                    m.times = value;
+                    return;
+                }
+            }
+        }
+    }
+
+    private static int get(MyMap[] map, int key) {
+        if (containsKey(map, key)) {
+            for (MyMap m :
+                    map) {
+                if (m.key == key) {
+                    return m.times;
+                }
+            }
+        }
+        return -1;
+    }
+    private static int[] addToArray(int[] array, int number) {
+        int[] result = new int[array.length + 1];
+
+        for (int i = 0; i < array.length; i++) {
+            result[i] = array[i];
+        }
+
+        result[result.length - 1] = number;
+        return result;
+    }
 }

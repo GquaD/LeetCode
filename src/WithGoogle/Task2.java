@@ -8,12 +8,18 @@ public class Task2 {
         int[] array2 = new int[]{19, 14, 28};
         int[] array3 = new int[]{7, 3, 5, 1};
 
-        int[] result1 = solution(3, array1);
+        /*int[] result1 = solution(3, array1);
         System.out.println(Arrays.toString(result1) + " and must be [3, 6, -1]");
         int[] result2 = solution(5, array2);
         System.out.println(Arrays.toString(result2) + " and must be [21, 15, 29]");
         int[] result3 = solution(3, array3);
-        System.out.println(Arrays.toString(result3) + " and must be [-1, 7, 6, 3]");
+        System.out.println(Arrays.toString(result3) + " and must be [-1, 7, 6, 3]");*/
+        System.out.println();
+        MyNode root = buildBinaryTree(31, 5);
+        System.out.println("\nroot = " + root.value);
+
+        System.out.println();
+        buildBinaryTree(63, 6);
     }
 
     public static int[] solution(int h, int[] data) {
@@ -21,7 +27,7 @@ public class Task2 {
 
         //built binary tree
         int rootNum = (pow(2, h) - 1);
-        MyNode root = buildBinaryTree(rootNum);
+        MyNode root = buildBinaryTree(rootNum, h);
 
 
         for (int i = 0; i < data.length; i++) {
@@ -35,13 +41,17 @@ public class Task2 {
         return result;
     }
 
-    private static MyNode buildBinaryTree(int rootNum) {
+    //proper builder for postorder binary tree
+    private static MyNode buildBinaryTree(int rootNum, int pow) {
         MyNode node = new MyNode(rootNum);
-        if (rootNum == 1) {
+        if (rootNum <= 1 || pow <= 1) {
             return node;
         }
-        node.leftNode = buildBinaryTree(rootNum / 2);
-        node.rightNode = buildBinaryTree(rootNum - 1);
+        node.leftNode = buildBinaryTree(rootNum - pow(2, pow - 1), pow - 1);
+        System.out.print("[ left = " + node.leftNode.value + " ");
+        node.rightNode = buildBinaryTree(rootNum - 1, pow - 1);
+        System.out.print("right = " + node.rightNode.value + " ");
+        System.out.print("value = " + node.value + " ] ");
         return node;
     }
 
@@ -56,7 +66,7 @@ public class Task2 {
         return num;
     }
 
-    static class MyNode {
+    private static class MyNode {
         int value;
         MyNode leftNode, rightNode;
 

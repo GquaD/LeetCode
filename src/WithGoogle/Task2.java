@@ -1,6 +1,7 @@
 package WithGoogle;
 
 import java.util.Arrays;
+import java.util.Enumeration;
 
 public class Task2 {
     public static void main(String[] args) {
@@ -15,11 +16,35 @@ public class Task2 {
         int[] result3 = solution(3, array3);
         System.out.println(Arrays.toString(result3) + " and must be [-1, 7, 6, 3]");*/
         System.out.println();
+        //1 build tree
         MyNode root = buildBinaryTree(31, 5);
         System.out.println("\nroot = " + root.value);
+        //2 retrieve roots for given numbers
+        int myNum = 25;
+        int num = getParentOfNum(root, myNum);
+        System.out.println("parent of 14 is " + num);
+        //3 place them into array and run
 
         System.out.println();
         buildBinaryTree(63, 6);
+    }
+
+    private static int getParentOfNum(MyNode rootOfTheTree, int myNum) {
+        if (rootOfTheTree.value == myNum) return -1;
+        MyNode root = rootOfTheTree;
+        MyNode left = rootOfTheTree.leftNode;
+        MyNode right = rootOfTheTree.rightNode;
+        int result = -1;
+        if (left != null && right != null) {
+            if (left.value == myNum || right.value == myNum) {
+                return root.value;
+            } else {
+                result = getParentOfNum(left, myNum);
+                if (result != -1) return result;
+                result = getParentOfNum(right, myNum);
+            }
+        }
+        return -1;
     }
 
     public static int[] solution(int h, int[] data) {

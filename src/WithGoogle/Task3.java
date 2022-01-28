@@ -16,10 +16,10 @@ public class Task3 {
 
     static int[][] variationsOfStep = new int[][] {
             {2, 1},
+            {-1, 2},
+            {-1, -2},
             {-2, -1},
             {-2, 1},
-            {-1, -2},
-            {-1, 2},
             {2, -1},
             {1, -2},
             {1, 2},
@@ -28,8 +28,9 @@ public class Task3 {
     static int minSteps;
 
     public static void main(String[] args) {
+        solution(19, 36); //this case is successful
         int result = solution(0, 1);
-        solution(19, 36);
+        solution(10, 26);
 
     }
 
@@ -54,6 +55,33 @@ public class Task3 {
 
     private static void countMinPossibleStep(int yStart, int xStart, int yEnd, int xEnd, int yPrevious, int xPrevious, int countSteps) {
         for (int i = 0; i < variationsOfStep.length; i++) {
+
+            int yTemp = yStart + variationsOfStep[i][0];
+            int xTemp = xStart + variationsOfStep[i][1];
+
+            if (checkStepExists(yTemp, xTemp) && !(yTemp == yPrevious && xTemp == xPrevious) ) {
+                ++countSteps;
+
+                if (yTemp == yEnd && xTemp == xEnd) {
+                    if (minSteps > countSteps) {
+                        minSteps = countSteps;
+                        return;
+                    }
+                }
+
+                if (countSteps > minSteps) {
+                    continue;
+                }
+
+                countMinPossibleStep(yTemp, xTemp, yEnd, xEnd, yStart, xStart, countSteps);
+            } else {
+                continue;
+            }
+        }
+    }
+
+    private static void countMinPossibleStep1(int yStart, int xStart, int yEnd, int xEnd, int yPrevious, int xPrevious, int countSteps) {
+        for (int i = 0; i < variationsOfStep.length; i++) {
             int yTemp = yStart + variationsOfStep[i][0];
             int xTemp = xStart + variationsOfStep[i][1];
             if (checkStepExists(yTemp, xTemp) && !(yTemp == yPrevious && xTemp == xPrevious) ) {
@@ -66,9 +94,9 @@ public class Task3 {
                         return;
                     }
                 }
-                if (countSteps > 10) {
-                    System.out.println("\nmore than 10 STOP!");
-                    return;
+                if (countSteps > minSteps) {
+                    System.out.println("\nminsteps = " + minSteps + " - no more than that");
+                    continue;
                 }
                 countMinPossibleStep(yTemp, xTemp, yEnd, xEnd, yStart, xStart, countSteps);
                 System.out.print("]");
@@ -77,8 +105,6 @@ public class Task3 {
             }
         }
         System.out.println();
-        return;
-
     }
 
     private static int[] getPosition(int num) {

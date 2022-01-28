@@ -14,12 +14,27 @@ public class Task3 {
             {56, 57, 58, 59, 60, 61, 62, 63}
     };
 
+    static int[][] variationsOfStep = new int[][] {
+            {2, 1},
+            {-2, -1},
+            {-2, 1},
+            {-1, -2},
+            {-1, 2},
+            {2, -1},
+            {1, -2},
+            {1, 2},
+    };
+
+    static int minSteps;
+
     public static void main(String[] args) {
         int result = solution(0, 1);
+        solution(19, 36);
 
     }
 
     private static int solution(int start, int end) {
+        minSteps = 100;
         //find current position's coordinates
         int[] startPosition = getPositionNoLoop(start);
         //find end position's coordinates
@@ -28,12 +43,42 @@ public class Task3 {
         //check if step(y-2, x-1) exists
 
         //step right method
-
+        countMinPossibleStep(startPosition[0], startPosition[1], endPosition[0], endPosition[1], startPosition[0], startPosition[1], 0);
+        System.out.println("minimal number of steps from " + start + " to " + end + " is " + minSteps);
         //recursive method should pass current position and number of steps, and end position
         //which is incremented with each step (recursion run)
 
 
         return 0;
+    }
+
+    private static void countMinPossibleStep(int yStart, int xStart, int yEnd, int xEnd, int yPrevious, int xPrevious, int countSteps) {
+        for (int i = 0; i < variationsOfStep.length; i++) {
+            int yTemp = yStart + variationsOfStep[i][0];
+            int xTemp = xStart + variationsOfStep[i][1];
+            if (checkStepExists(yTemp, xTemp) && !(yTemp == yPrevious && xTemp == xPrevious) ) {
+                System.out.print("[ step: y = " + yTemp + ", x = " + xTemp + " ");
+                ++countSteps;
+                if (yTemp == yEnd && xTemp == xEnd) {
+                    if (minSteps > countSteps) {
+                        System.out.println("\n!!!from " + minSteps + " decreased to " + countSteps);
+                        minSteps = countSteps;
+                        return;
+                    }
+                }
+                if (countSteps > 10) {
+                    System.out.println("\nmore than 10 STOP!");
+                    return;
+                }
+                countMinPossibleStep(yTemp, xTemp, yEnd, xEnd, yStart, xStart, countSteps);
+                System.out.print("]");
+            } else {
+                continue;
+            }
+        }
+        System.out.println();
+        return;
+
     }
 
     private static int[] getPosition(int num) {
@@ -70,12 +115,12 @@ public class Task3 {
         }
     }
 
-    private static boolean stepExists(int[] position, int y, int x) {
-        int yStart = position[0];
-        int xStart = position[1];
-        if (getNumFromPosition(y, x) == -1) {
+    private static boolean checkStepExists(int y, int x) {
+        try {
+            int number = board[y][x];
+        } catch (Exception e) {
             return false;
         }
-        return false;
+        return true;
     }
 }

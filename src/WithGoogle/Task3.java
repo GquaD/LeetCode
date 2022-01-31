@@ -15,9 +15,9 @@ public class Task3 {
     };
 
     static int[][] variationsOfStep = new int[][] {
-            {2, 1},
             {-1, 2},
             {-1, -2},
+            {2, 1},
             {-2, -1},
             {-2, 1},
             {2, -1},
@@ -29,13 +29,13 @@ public class Task3 {
 
     public static void main(String[] args) {
         solution(19, 36); //this case is successful
-        int result = solution(0, 1);
         solution(10, 26);
+        solution(0, 1);
 
     }
 
     private static int solution(int start, int end) {
-        minSteps = 5;
+        minSteps = 10;
         //find current position's coordinates
         int[] startPosition = getPositionNoLoop(start);
         //find end position's coordinates
@@ -44,7 +44,7 @@ public class Task3 {
         //check if step(y-2, x-1) exists
 
         //step right method
-        countMinPossibleStep(startPosition[0], startPosition[1], endPosition[0], endPosition[1], startPosition[0], startPosition[1], 0, 0);
+        countMinPossibleStep(startPosition[0], startPosition[1], endPosition[0], endPosition[1], startPosition[0], startPosition[1], 0);
         System.out.println("minimal number of steps from " + start + " to " + end + " is " + minSteps);
         //recursive method should pass current position and number of steps, and end position
         //which is incremented with each step (recursion run)
@@ -53,16 +53,13 @@ public class Task3 {
         return 0;
     }
 
-    private static void countMinPossibleStep(int yStart, int xStart, int yEnd, int xEnd, int yPrevious, int xPrevious, int variation, int countSteps) {
-        //for (int i = 0; i < variationsOfStep.length; i++) {
-        if (countSteps > minSteps) {
-            return;
-        }
-        if (variation >= variationsOfStep.length -1) {
-            return;
-        }
-            int yTemp = yStart + variationsOfStep[variation][0];
-            int xTemp = xStart + variationsOfStep[variation][1];
+    private static void countMinPossibleStep(int yStart, int xStart, int yEnd, int xEnd, int yPrevious, int xPrevious, int countSteps) {
+        for (int i = 0; i < variationsOfStep.length; i++) {
+            if (countSteps > minSteps) {
+                return;
+            }
+            int yTemp = yStart + variationsOfStep[i][0];
+            int xTemp = xStart + variationsOfStep[i][1];
 
             if (checkStepIsPossible(yTemp, xTemp) && !(yTemp == yPrevious && xTemp == xPrevious)) {
                 ++countSteps;
@@ -73,9 +70,9 @@ public class Task3 {
                         return;
                     }
                 }
-                countMinPossibleStep(yTemp, xTemp, yEnd, xEnd, yStart, xStart, ++variation, countSteps);
+                countMinPossibleStep(yTemp, xTemp, yEnd, xEnd, yStart, xStart, countSteps);
             }
-        //}
+        }
     }
 
     private static void countMinPossibleStep1(int yStart, int xStart, int yEnd, int xEnd, int yPrevious, int xPrevious, int countSteps) {

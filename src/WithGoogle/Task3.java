@@ -20,30 +20,43 @@ public class Task3 {
     static int[][] visitsNumber;
 
     static int[][] variationsOfStep = new int[][] {
-            {-1, 2},
             {-1, -2},
-            {2, 1},
             {-2, -1},
             {-2, 1},
-            {2, -1},
+            {-1, 2},
             {1, -2},
+            {2, -1},
+            {2, 1},
             {1, 2},
     };
 
     static int minSteps;
-    static Stack stack;
+    static Queue queue;
 
     public static void main(String[] args) {
-        /*solution(10, 26);
-        print2dArray(visitsNumber);*/
+        solution(10, 26);
+        print2dArray(visitsNumber);
 
-        /*solution(19, 36); //this case is successful
-        print2dArray(visitsNumber);*/
+        solution(19, 36); //this case is successful
+        print2dArray(visitsNumber);
 
         solution(0, 1);
 //        print2dArray(visited);
 //        System.out.println("Visits number below: ");
         print2dArray(visitsNumber);
+        Node one = new Node(1, 1);
+        Node two = new Node(2, 1);
+        Node three = new Node(3, 1);
+        Node four = new Node(4, 1);
+        Queue queue = new Queue();
+
+        queue.add(one);
+        queue.add(two);
+        queue.add(three);
+        queue.add(four);
+        while (queue.getFirst()!= null) {
+            System.out.println(queue.pop().y);
+        }
     }
 
     private static void print2dArray(int[][] visitsNumber) {
@@ -64,7 +77,7 @@ public class Task3 {
         int[] endPosition = getPositionNoLoop(end);
         //step left method
         //check if step(y-2, x-1) exists
-        stack = new Stack();
+        queue = new Queue();
         //step right method
         countMinPossibleStep2(startPosition[0], startPosition[1], endPosition[0], endPosition[1]);
         System.out.println("minimal number of steps from " + start + " to " + end + " is " + visitsNumber[endPosition[0]][endPosition[1]]);
@@ -74,7 +87,7 @@ public class Task3 {
         //add visited 2d array
         //set first position as visited
         //add primitive stack structure
-        stack = null;
+        queue = null;
 
         return 0;
     }
@@ -99,7 +112,7 @@ public class Task3 {
                     }
                 }
                 Node current = new Node(yTemp, xTemp);
-                stack.add(current);
+                queue.add(current);
                 visited[yTemp][xTemp] = 1;
                 //countMinPossibleStep(yTemp, xTemp, yEnd, xEnd, countSteps);
             }
@@ -115,62 +128,53 @@ public class Task3 {
 
     private static void countMinPossibleStep2(int yStart, int xStart, int yEnd, int xEnd) {
         int countSteps = 0;
-        Stack[] stackBig = new Stack[10];
+        Queue[] queueBig = new Queue[10];
         Node current = new Node(yStart, xStart);
-        Stack stack = new Stack();
-        stack.add(current);
-        stackBig[countSteps] = stack;
+        Queue queue = new Queue();
+        queue.add(current);
+        queueBig[countSteps] = queue;
 
         visited[yStart][xStart] = 1;
-        while (!isEmpty(stackBig)) {
-            stack = findLastOne(stackBig);
-            countSteps++;
-            while (stack.getHead() != null) {
-                Node node = stack.pop();
-
+        while (queue.getFirst() != null) {
+            Node node = queue.pop();
+            //while (stack.getHead() != null) {
                 if (node.y == yEnd && node.x == xEnd) {
-                    if (minSteps > countSteps) {
-                        minSteps = countSteps;
-                        System.out.println("minsteps: " + minSteps);
-                        countSteps--;
-                        break;
-                    }
+                    minSteps = node.distance;
+                    System.out.println("minsteps: " + minSteps);
+                    return;
                 }
-                if (minSteps <= countSteps) {
-                    break;
-                }
-                Stack stackTemp = new Stack();
+
                 for (int i = 0; i < variationsOfStep.length; i++) {
                     int yTemp = node.y + variationsOfStep[i][0];
                     int xTemp = node.x + variationsOfStep[i][1];
-                    if (checkStepIsPossible(xTemp, yTemp) && visited[xTemp][yTemp] == 0) {
+                    if (checkStepIsPossible(yTemp, xTemp) && visited[yTemp][xTemp] == 0) {
                         visited[yTemp][xTemp] = 1;
-                        visitsNumber[yTemp][xTemp] = countSteps;
                         Node next = new Node(yTemp, xTemp);
-                        stackTemp.add(next);
+                        next.distance = node.distance + 1;
+                        visitsNumber[yTemp][xTemp] = next.distance;
+                        queue.add(next);
                     }
                 }
-                stackBig[countSteps] = stackTemp;
             }
             print2dArray(visitsNumber);
             System.out.println();
-        }
+//        }
     }
 
     private static void countMinPossibleStep5(int yStart, int xStart, int yEnd, int xEnd) {
         int countSteps = 0;
-        Stack[] stackBig = new Stack[10];
+        Queue[] queueBig = new Queue[10];
         Node current = new Node(yStart, xStart);
-        Stack stack = new Stack();
-        stack.add(current);
-        stackBig[countSteps] = stack;
+        Queue queue = new Queue();
+        queue.add(current);
+        queueBig[countSteps] = queue;
 
         visited[yStart][xStart] = 1;
-        while (!isEmpty(stackBig)) {
-            stack = findLastOne(stackBig);
+        while (!isEmpty(queueBig)) {
+            queue = findLastOne(queueBig);
             countSteps++;
-            while (stack.getHead() != null) {
-                Node node = stack.pop();
+            while (queue.getFirst() != null) {
+                Node node = queue.pop();
 
                 if (node.y == yEnd && node.x == xEnd) {
                     if (minSteps > countSteps) {
@@ -179,10 +183,10 @@ public class Task3 {
                         break;
                     }
                 }
-                if (minSteps <= stack.count) {
+                if (minSteps <= queue.count) {
                     continue;
                 }
-                Stack stackTemp = new Stack();
+                Queue queueTemp = new Queue();
                 for (int i = 0; i < variationsOfStep.length; i++) {
                     int yTemp = node.y + variationsOfStep[i][0];
                     int xTemp = node.x + variationsOfStep[i][1];
@@ -190,20 +194,20 @@ public class Task3 {
                         visited[yTemp][xTemp] = 1;
                         visitsNumber[yTemp][xTemp] = countSteps;
                         Node next = new Node(yTemp, xTemp);
-                        stackTemp.add(next);
+                        queueTemp.add(next);
                     }
                     countMinPossibleStep2(yTemp, xTemp, yEnd, xEnd);
                 }
-                stackBig[countSteps] = stackTemp;
+                queueBig[countSteps] = queueTemp;
             }
 
         }
     }
 
-    private static Stack findLastOne(Stack[] stackBig) {
-        for (int i = stackBig.length - 1; i >= 0; i--) {
-            if (stackBig[i] != null) {
-                Stack temp = stackBig[i];
+    private static Queue findLastOne(Queue[] queueBig) {
+        for (int i = queueBig.length - 1; i >= 0; i--) {
+            if (queueBig[i] != null) {
+                Queue temp = queueBig[i];
                 //stackBig[i] = null;
                 return temp;
             }
@@ -211,9 +215,9 @@ public class Task3 {
         return null;
     }
 
-    private static boolean isEmpty(Stack[] stackBig) {
-        if (stackBig == null) return true;
-        for (Stack s : stackBig) {
+    private static boolean isEmpty(Queue[] queueBig) {
+        if (queueBig == null) return true;
+        for (Queue s : queueBig) {
             if (s != null) return false;
         }
         return true;
@@ -222,8 +226,8 @@ public class Task3 {
     private static void countMinPossibleStep4(int yStart, int xStart, int yEnd, int xEnd) {
         int countSteps = 0;
         visited[yStart][xStart] = 1;
-        while (stack.getHead() != null) {
-            Node node = stack.pop();
+        while (queue.getFirst() != null) {
+            Node node = queue.pop();
             countSteps++;
 
             if (node.y == yEnd && node.x == xEnd) {
@@ -232,7 +236,7 @@ public class Task3 {
                     return;
                 }
             }
-            if (minSteps <= stack.count) {
+            if (minSteps <= queue.count) {
                 continue;
             }
 
@@ -243,7 +247,7 @@ public class Task3 {
                     visited[yTemp][xTemp] = 1;
                     visitsNumber[yTemp][xTemp] = countSteps;
                     Node next = new Node(yTemp, xTemp);
-                    stack.add(next);
+                    queue.add(next);
                 }
             }
         }
@@ -319,21 +323,29 @@ public class Task3 {
         return true;
     }
 
-    static class Stack {
-        Node head;
+    static class Queue {
+        Node first;
+        Node last;
         int count;
-        public Stack() {
-            head = null;
+
+        public Queue() {
+            first = null;
+            last = null;
             count = 0;
         }
 
         Node pop() {
-            if (head == null) {
+            if (first == null || last == null) {
                 count = 0;
                 return null;
+            } else if (count == 1) {
+                Node temp = last;
+                first = last = null;
+                count--;
+                return temp;
             } else {
-                Node temp = head;
-                head = head.prev;
+                Node temp = first;
+                first = temp.next;
                 count--;
                 return temp;
             }
@@ -341,17 +353,21 @@ public class Task3 {
         }
 
         void add(Node node) {
-            if (head == null) {
-                head = node;
-                node.prev = null;
+            if (first == null && last == null) {
+                first = last = node;
+                node.next = null;
+            } else if (last == null) {
+                last = node;
+                first.next = last;
             } else {
-                node.prev = head;
-                head = node;
+                Node preLast = last;
+                last = node;
+                preLast.next = node;
             }
             count++;
         }
-        Node getHead(){
-            return head;
+        Node getFirst(){
+            return first;
         }
     }
 
@@ -359,15 +375,16 @@ public class Task3 {
 
     static class Node {
         int[] dimensions;
-        int x, y;
-        Node prev;
+        int x, y, distance;
+        Node next;
         Node[] prevArray;
 
         public Node() {
             dimensions = new int[2];
             x = 0;
             y = 0;
-            prev = null;
+            next = null;
+            distance = 0;
             prevArray = null;
         }
 

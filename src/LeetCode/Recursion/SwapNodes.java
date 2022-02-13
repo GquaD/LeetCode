@@ -1,7 +1,7 @@
 package LeetCode.Recursion;
 
 public class SwapNodes {
-    //not solved yet
+    //SOLVED!
 
     //task
     //Given a linked list, swap every two adjacent nodes and return its head.
@@ -17,7 +17,7 @@ public class SwapNodes {
         node2.next = node3;
         node3.next = node4;
         ListNode head = swapPairs(node1);
-        while (head.next != null) {
+        while (head != null) {
             System.out.print(head.val + " -> ");
             head = head.next;
         }
@@ -25,12 +25,14 @@ public class SwapNodes {
 
 
     public static ListNode swapPairs(ListNode head) {
+        if (head == null) return null;
+        if (head.next == null) return head;
         headMain = head.next;
-        recursiveSwap(head, head.next);
+        recursiveSwap(head, head.next, null);
         return headMain;
     }
     static ListNode headMain = null;
-    private static ListNode recursiveSwap(ListNode head, ListNode next) {
+    private static ListNode recursiveSwap(ListNode head, ListNode next, ListNode prevPairSecondNode) {
         if (head == null) {
             return null;
         }
@@ -39,19 +41,22 @@ public class SwapNodes {
         }
         ListNode nextPairLink = next.next;
         swap(head, next);
+        if (prevPairSecondNode != null) {
+            prevPairSecondNode.next = next;
+        }
+        ListNode nextPairConnect = head;
         if (nextPairLink == null) {
-            return recursiveSwap(nextPairLink, null);
+            return recursiveSwap(nextPairLink, null, nextPairConnect);
         } else {
-            recursiveSwap(nextPairLink, nextPairLink.next);
+            recursiveSwap(nextPairLink, nextPairLink.next, nextPairConnect);
         }
         return null;
     }
 
-    static void swap(ListNode first, ListNode second) {
-        //ListNode nextOfSecond = second.next;
-        ListNode temp = second;
-        second = first;
-        first = temp;
+    static void swap(ListNode one, ListNode two) {
+        ListNode temp = two.next;
+        two.next = one;
+        one.next = temp;
     }
 
       public static class ListNode {

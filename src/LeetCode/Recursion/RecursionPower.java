@@ -24,6 +24,20 @@ public class RecursionPower {
         if (n == -1) {
             return 1 / x;
         }
+        if (x > 0 && x < 1 && n > 1000000) {
+            return 0.0;
+        }
+        if (x > -1 && x < -1 && n > 1000000) {
+            return 0.0;
+        }
+
+        if (x > 1 && n < -1000000) {
+            return 0.0;
+        }
+
+        if (x < -1 && n < -1000000) {
+            return 0.0;
+        }
         if (n < -1) {
             x *= 1 / initial;
         }
@@ -60,6 +74,20 @@ public class RecursionPower {
         }
         if (x == 0) {
             return 0;
+        }
+        if (x > 0 && x < 1 && n > 1000000) {
+            return 0.0;
+        }
+        if (x > -1 && x < -1 && n > 1000000) {
+            return 0.0;
+        }
+
+        if (x > 1 && n < -1000000) {
+            return 0.0;
+        }
+
+        if (x < -1 && n < -1000000) {
+            return 0.0;
         }
         if (x == -1.0) {
             if (n % 2 == 0) {

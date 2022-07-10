@@ -21,15 +21,15 @@ public class Problem98 {
         node6.left = node3;
         node6.right = node7;
 
-        System.out.println(isValidBST3(root));
+        System.out.println(isValidBST4(root));
     }
     //Runtime: 0 ms, faster than 100.00% of Java online submissions for Validate Binary Search Tree.
     //Memory Usage: 43.9 MB, less than 55.20% of Java online submissions for Validate Binary Search Tree.
-    public boolean isValidBST4(TreeNode root) {
+    public static boolean isValidBST4(TreeNode root) {
         return isValidBST4(root, Long.MIN_VALUE, Long.MAX_VALUE);
     }
 
-    public boolean isValidBST4(TreeNode root, long minVal, long maxVal) {
+    public static boolean isValidBST4(TreeNode root, long minVal, long maxVal) {
         if (root == null) return true;
         if (root.val >= maxVal || root.val <= minVal) return false;
         return isValidBST4(root.left, minVal, root.val) && isValidBST4(root.right, root.val, maxVal);

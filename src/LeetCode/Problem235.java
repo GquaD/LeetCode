@@ -2,9 +2,10 @@ package LeetCode;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 public class Problem235 {
+    static TreeNode tempCommonParent;
+
     //https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
     public static void main(String[] args) {
         //todo
@@ -27,10 +28,27 @@ public class Problem235 {
         node5.right = node9;
         System.out.println(lowestCommonAncestor(root, node2, node7).val);
         System.out.println(lowestCommonAncestor(root, node2, node5).val);
+        System.out.println(lowestCommonAncestor(root, node2, node5).val);
+
+        TreeNode root2 = new TreeNode(2);
+        TreeNode node22 = new TreeNode(1);
+        root2.left = node22;
+
+        System.out.println(lowestCommonAncestor(root2, root2, node22).val);
+
+        TreeNode root3 = new TreeNode(3);
+        TreeNode child1 = new TreeNode(1);
+        TreeNode child4 = new TreeNode(4);
+        TreeNode child2 = new TreeNode(2);
+
+        root3.left = child1;
+        root3.right = child4;
+        child1.right = child2;
+        System.out.println(lowestCommonAncestor(root3, child2, child4).val);
     }
 
-
-
+    //Runtime: 24 ms, faster than 5.82% of Java online submissions for Lowest Common Ancestor of a Binary Search Tree.
+    //Memory Usage: 49.2 MB, less than 81.21% of Java online submissions for Lowest Common Ancestor of a Binary Search Tree.
     static TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         List<TreeNode> listP = new ArrayList<>();
         List<TreeNode> listQ = new ArrayList<>();
@@ -41,22 +59,22 @@ public class Problem235 {
         listP = removeUnnecessaryNodesFromPath(listP);
         listQ = removeUnnecessaryNodesFromPath(listQ);
 
-
+        if (listP.size() == listQ.size() && listP.size() == 1) {
+            return root;
+        }
         return findLowestCommonAncestorNode(listP, listQ);
     }
 
-    private static List<TreeNode>  removeUnnecessaryNodesFromPath(List<TreeNode> listP) {
-        TreeNode current = listP.get(0);
-        List<TreeNode> result = new ArrayList<>();
+    private static List<TreeNode> removeUnnecessaryNodesFromPath(List<TreeNode> listP) {
+        TreeNode current = listP.get(listP.size() - 1);
         for (int i = listP.size() - 1; i > 0; i--) {
             TreeNode prev = listP.get(i - 1);
-            if (prev.left != null && prev.right != null) {
-                if (!(prev.left.equals(current) || prev.right.equals(current))) {
-                    listP.remove(i - 1);
-                } else {
-                    current = prev;
-                }
+            if (prev.left != current && prev.right != current) {
+                listP.remove(i - 1);
+            } else {
+                current = prev;
             }
+
         }
         return listP;
     }
@@ -66,7 +84,7 @@ public class Problem235 {
         for (int i = 0; i < listP.size(); i++) {
             for (int j = 0; j < listQ.size(); j++) {
                 if (listP.get(i).equals(listQ.get(j))) {
-                    result= listQ.get(j);
+                    result = listQ.get(j);
                 }
             }
         }
@@ -88,20 +106,6 @@ public class Problem235 {
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    static TreeNode tempCommonParent;
     //need to check case with one child node
     public TreeNode lowestCommonAncestor1(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null) return null;

@@ -18,8 +18,8 @@ public class Problem1828 {
         System.out.println(result);
     }
 
-    //Runtime: 56 ms, faster than 27.57% of Java online submissions for Queries on Number of Points Inside a Circle.
-    //Memory Usage: 51 MB, less than 15.75% of Java online submissions for Queries on Number of Points Inside a Circle.
+    //Runtime: 42 ms, faster than 52.32% of Java online submissions for Queries on Number of Points Inside a Circle.
+    //Memory Usage: 50.7 MB, less than 29.11% of Java online submissions for Queries on Number of Points Inside a Circle.
     static int[] countPoints(int[][] points, int[][] queries) {
         int[] res = new int[queries.length];
         for (int i = 0; i < queries.length; i++) {
@@ -31,7 +31,9 @@ public class Problem1828 {
                 int yPoint = points[j][1];
                 // distance between 2 points
                 // d = sqrt( (x2 - x1)^2 + (y2 - y1) )
-                double d = Math.sqrt(Math.pow(xPoint - xCircle, 2) + Math.pow(yPoint - yCircle, 2));
+                xPoint = xPoint - xCircle;
+                yPoint = yPoint - yCircle;
+                double d = Math.sqrt(xPoint * xPoint + yPoint * yPoint);
                 if (d <= radius) {
                     res[i] += 1;
                 }

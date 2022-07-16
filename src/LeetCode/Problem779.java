@@ -3,6 +3,7 @@ package LeetCode;
 public class Problem779 {
     //https://leetcode.com/problems/k-th-symbol-in-grammar/
     //todo
+    //
     public static void main(String[] args) {
         System.out.println(kthGrammar(1,1));
         System.out.println(kthGrammar(2, 1));

@@ -1,7 +1,5 @@
 package LeetCode.medium;
 
-import LeetCode.Recursion.SwapNodes;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +8,7 @@ public class Problem2130 {
     public static void main(String[] args) {
 
     }
+
     //Runtime: 18 ms, faster than 43.07% of Java online submissions for Maximum Twin Sum of a Linked List.
     //Memory Usage: 120.7 MB, less than 35.44% of Java online submissions for Maximum Twin Sum of a Linked List.
     static int pairSum(ListNode head) {
@@ -32,8 +31,17 @@ public class Problem2130 {
     static class ListNode {
         int val;
         ListNode next;
-        ListNode() {}
-        ListNode(int val) { this.val = val; }
-        ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+
+        ListNode() {
+        }
+
+        ListNode(int val) {
+            this.val = val;
+        }
+
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
     }
 }

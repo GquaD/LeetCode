@@ -10,18 +10,77 @@ public class Problem1255 {
         System.out.println(maxScoreWords(new String[]{"dog", "cat", "dad", "good" },
                 new char[]{'a', 'a', 'c', 'd', 'd', 'd', 'g', 'o', 'o'},
                 new int[]{1, 0, 9, 5, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}));
-
+        //23
         System.out.println(maxScoreWords(new String[]{"xxxz", "ax", "bx", "cx" },
                 new char[]{'z', 'a', 'b', 'c', 'x', 'x', 'x'},
                 new int[]{4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 10}));
-
+        //27
         System.out.println(maxScoreWords(new String[]{"leetcode" },
                 new char[]{'l', 'e', 't', 'c', 'o', 'd'},
                 new int[]{0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0}));
-
+        //0
+        System.out.println(maxScoreWords(new String[]{"aceea", "bbead", "dcdbc", "dbebd", "ebaa", "cbdd" },
+                new char[]{'a', 'a', 'a', 'a', 'a', 'b', 'c', 'd', 'd', 'd', 'e', 'e', 'e', 'e', 'e', 'e'},
+                new int[]{2, 7, 1, 4, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}));
+        //19
+        System.out.println(maxScoreWords(new String[]{"adbc", "caaa", "deadc", "ecbd", "ecdd", "abdb" },
+                new char[]{'a','a','a','a','b','b','b','b','b','b','c','c','d','d','d','d','e','e','e','e'},
+                new int[]{6, 2, 8, 8, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}));
+        //actual:74
+        //expected:78
     }
 
+    //3rd version (not considering all combinations)
     static int maxScoreWords(String[] words, char[] letters, int[] score) {
+        int[] points = new int[words.length];
+        //scores of each word
+        List<Pair> list = new ArrayList<>();
+        for (int i = 0; i < words.length; i++) {
+            for (int j = 0; j < words[i].length(); j++) {
+                int index = words[i].charAt(j) - 97;
+                points[i] += score[index];
+            }
+            Pair pair = new Pair(words[i], points[i]);
+            list.add(pair);
+        }
+        list = list.stream().sorted((o1, o2) -> o2.score - o1.score).collect(Collectors.toList());
+        int[] finalScores = new int[list.size()];
+        for (int k = 0; k < list.size(); k++) {
+            String lettersString = new String(letters);
+            String lettersCheck = new String(letters);
+            int scoreFinal = 0;
+            for (int i = k; i < list.size(); i++) {
+                Pair pair = list.get(i);
+                boolean fullyContains = true;
+                lettersCheck = new String(lettersString);
+                for (int j = 0; j < pair.word.length(); j++) {
+                    if (!lettersCheck.contains(pair.word.charAt(j) + "")) {
+                        fullyContains = false;
+                        break;
+                    }
+                    lettersCheck = lettersCheck.replaceFirst(pair.word.charAt(j) + "", "");
+                }
+                if (!fullyContains) {
+                    continue;
+                }
+                for (int j = 0; j < pair.word.length(); j++) {
+                    lettersString = lettersString.replaceFirst(pair.word.charAt(j) + "", "");
+                }
+                scoreFinal += pair.score;
+            }
+            finalScores[k] = scoreFinal;
+        }
+
+        int max = 0;
+        for (int i = 0; i < finalScores.length; i++) {
+            if (max < finalScores[i]) {
+                max = finalScores[i];
+            }
+        }
+        return max;
+    }
+
+    static int maxScoreWords2(String[] words, char[] letters, int[] score) {
         int[] points = new int[words.length];
         //scores of each word
         List<Pair> list = new ArrayList<>();
@@ -58,15 +117,18 @@ public class Problem1255 {
         }
 
         lettersString = new String(letters);
+        lettersCheck = new String(letters);
         int scoreFinal2 = 0;
         for (int i = 1; i < list.size(); i++) {
             Pair pair = list.get(i);
             boolean fullyContains = true;
+            lettersCheck = new String(lettersString);
             for (int j = 0; j < pair.word.length(); j++) {
-                if (!lettersString.contains(pair.word.charAt(j) + "")) {
+                if (!lettersCheck.contains(pair.word.charAt(j) + "")) {
                     fullyContains = false;
                     break;
                 }
+                lettersCheck = lettersCheck.replaceFirst(pair.word.charAt(j) + "", "");
             }
             if (!fullyContains) {
                 continue;

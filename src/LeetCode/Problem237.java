@@ -1,7 +1,5 @@
 package LeetCode;
 
-import LeetCode.Recursion.SwapNodes;
-
 public class Problem237 {
     //https://leetcode.com/problems/delete-node-in-a-linked-list/
     public static void main(String[] args) {
@@ -18,6 +16,9 @@ public class Problem237 {
     public static class ListNode {
         int val;
         ListNode next;
-        ListNode(int val) { this.val = val; }
+
+        ListNode(int val) {
+            this.val = val;
+        }
     }
 }

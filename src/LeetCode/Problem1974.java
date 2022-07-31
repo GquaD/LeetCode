@@ -14,13 +14,12 @@ public class Problem1974 {
     static int minTimeToType(String word) {
         int count = 0;
         int pos = 1; //position on 'a'
-        boolean isClockwise = true;
         for (int i = 0; i < word.length(); i++) {
             int curr = numFromAtoZFrom1To26(word.charAt(i));
             if (Math.abs(curr - pos) <= 13) {
                 count += Math.abs(curr - pos) + 1;
             } else {
-                isClockwise = pos - curr > 0;
+                boolean isClockwise = pos - curr > 0;
                 if (!isClockwise) {
                     count += pos - numFromAtoZFrom1To26('a') + 1;
                     count += numFromAtoZFrom1To26('z') - curr + 1;

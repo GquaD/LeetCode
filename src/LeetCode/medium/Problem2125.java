@@ -10,7 +10,7 @@ public class Problem2125 {
         System.out.println(numberOfBeams(new String[]{"000", "111", "000"}));
     }
 
-
+    //O(2N) done in 20 mins
     //Runtime: 33 ms, faster than 23.87% of Java online submissions for Number of Laser Beams in a Bank.
     //Memory Usage: 54 MB, less than 61.01% of Java online submissions for Number of Laser Beams in a Bank.
     static int numberOfBeams(String[] bank) {

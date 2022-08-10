@@ -20,7 +20,7 @@ public class Problem2181 {
         node7.next = node8;
         System.out.println(mergeNodes(node1).val);
     }
-
+    //solved in 20 mins
     //Runtime: 12 ms, faster than 55.41% of Java online submissions for Merge Nodes in Between Zeros.
     //Memory Usage: 302.6 MB, less than 41.05% of Java online submissions for Merge Nodes in Between Zeros.
     static ListNode mergeNodes(ListNode head) {

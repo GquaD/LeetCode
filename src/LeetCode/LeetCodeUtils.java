@@ -1,5 +1,6 @@
 package LeetCode;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,5 +25,11 @@ public class LeetCodeUtils {
             }
         }
         return map;
+    }
+
+    public static void print2DArray(int[][] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println(Arrays.toString(arr[i]));
+        }
     }
 }

@@ -12,7 +12,62 @@ public class Problem1605 {
         //[1,0,3,16,7]
     }
 
+    //Runtime: 16 ms, faster than 11.53% of Java online submissions for Find Valid Matrix Given Row and Column Sums.
+    //Memory Usage: 117.6 MB, less than 67.92% of Java online submissions for Find Valid Matrix Given Row and Column Sums.
     static int[][] restoreMatrix(int[] rowSum, int[] colSum) {
+        int[][] res = new int[rowSum.length][colSum.length];
+        for (int i = 0; i < rowSum.length; i++) {
+            for (int j = 0; j < colSum.length; j++) {
+                res[i][j] = Math.min(rowSum[i], colSum[j]);
+                rowSum[i] -= res[i][j];
+                colSum[j] -= res[i][j];
+            }
+        }
+        return res;
+    }
+
+
+    static int[][] restoreMatrix3(int[] rowSum, int[] colSum) {
+        int[][] res = new int[rowSum.length][colSum.length];
+        int sumRowOverall = 0, sumColOverall = 0;
+        for (int i = 0; i < rowSum.length; i++) {
+            sumRowOverall += rowSum[i];
+        }
+        for (int i = 0; i < colSum.length; i++) {
+            sumColOverall += colSum[i];
+        }
+
+        for (int i = 0; i < res.length; i++) {
+            for (int j = 0; j < res[0].length; j++) {
+                res[i][j] = calcCellValue(colSum[j], sumColOverall, rowSum[i], colSum.length);
+            }
+        }
+
+        for (int i = 0; i < res[0].length; i++) {
+            for (int j = 0; j < res.length; j++) {
+                int val = calcCellValue(rowSum[j], sumRowOverall, colSum[i], rowSum.length);
+                if (val != res[j][i]) {
+                    res[j][i] = Math.min(val, res[j][i]);
+                }
+            }
+        }
+
+        return res;
+    }
+
+    private static int calcCellValue(int sum, int sumOverall, int divider, int noOfElements) {
+        return round(((sum * 1.0) / sumOverall) * divider, noOfElements);
+    }
+
+    private static int round(double d, int noOfElements) {
+        double floor = Math.floor(d);
+        if (d - floor > (1.0 / noOfElements)) {
+            return (int) Math.ceil(d);
+        } else return (int) floor;
+    }
+
+
+    static int[][] restoreMatrix2(int[] rowSum, int[] colSum) {
         int[][] res = new int[rowSum.length][colSum.length];
         for (int i = 0; i < res.length - 1; i++) {
             int cell = rowSum[i] / colSum.length;

@@ -20,15 +20,49 @@ public class Problem1381 {
         stack.pop();
         stack.pop();
     }
+
     //improved performance
-    //todo
+    //Runtime: 10 ms, faster than 48.55% of Java online submissions for Design a Stack With Increment Operation.
+    //Memory Usage: 50.2 MB, less than 66.49% of Java online submissions for Design a Stack With Increment Operation.
+    static class CustomStack {
+        int[] array;
+        int size;
+
+        public CustomStack(int maxSize) {
+            this.array = new int[maxSize];
+            this.size = 0;
+        }
+
+        public void push(int x) {
+            if (this.size < this.array.length) {
+                this.array[this.size++] = x;
+            }
+        }
+
+        public int pop() {
+            if (this.size == 0) {
+                return -1;
+            }
+            this.size--;
+            return this.array[this.size];
+        }
+
+        public void increment(int k, int val) {
+            int times = Math.min(k, this.size);
+            for (int i = 0; i < times; i++) {
+                this.array[i] += val;
+            }
+        }
+    }
+
+    //improved performance
     //Runtime: 33 ms, faster than 16.75% of Java online submissions for Design a Stack With Increment Operation.
     //Memory Usage: 50.9 MB, less than 28.29% of Java online submissions for Design a Stack With Increment Operation.
-    static class CustomStack {
+    static class CustomStack2 {
         int capacity;
         BaseStack baseStack;
 
-        public CustomStack(int maxSize) {
+        public CustomStack2(int maxSize) {
             this.capacity = maxSize;
             this.baseStack = new BaseStack();
         }
@@ -44,7 +78,6 @@ public class Problem1381 {
         }
 
         public void increment(int k, int val) {
-            int times = Math.min(this.baseStack.size, k);
             ListNode node = this.baseStack.top;
             if (this.baseStack.size > k) {
                 int diff = this.baseStack.size - k;

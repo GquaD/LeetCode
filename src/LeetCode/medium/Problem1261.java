@@ -8,6 +8,81 @@ public class Problem1261 {
 
     }
 
+    //BEST result so far
+    //Runtime: 48 ms, faster than 34.44% of Java online submissions for Find Elements in a Contaminated Binary Tree.
+    //Memory Usage: 57 MB, less than 21.33% of Java online submissions for Find Elements in a Contaminated Binary Tree.
+    //if use hashset instead of Arraylist
+
+    //Runtime: 1078 ms, faster than 14.86% of Java online submissions for Find Elements in a Contaminated Binary Tree.
+    //Memory Usage: 56.3 MB, less than 54.72% of Java online submissions for Find Elements in a Contaminated Binary Tree.
+    class FindElements5 {
+        TreeNode root;
+        boolean exists;
+        Set<Integer> set;
+        public FindElements5(TreeNode root) {
+            this.root = root;
+            this.set = new HashSet<>();
+        }
+
+        public boolean find(int target) {
+            this.exists = false;
+            if (set.contains(target)) {
+                return true;
+            }
+            find(this.root, 0, target);
+            return this.exists;
+        }
+
+        private void find(TreeNode root, int val, int target) {
+            if (root == null) {
+                return;
+            }
+            if (root.val == -1) {
+                root.val = val;
+                this.set.add(val);
+            }
+            if (root.val == target) {
+                exists = true;
+                return;
+            }
+            find(root.left, val * 2 + 1, target);
+            find(root.right, val * 2 + 2, target);
+        }
+    }
+
+    //Runtime: 1169 ms, faster than 11.54% of Java online submissions for Find Elements in a Contaminated Binary Tree.
+    //Memory Usage: 45.7 MB, less than 98.25% of Java online submissions for Find Elements in a Contaminated Binary Tree.
+    class FindElements4 {
+        TreeNode root;
+        boolean exists;
+
+        public FindElements4(TreeNode root) {
+            this.root = root;
+            //recover(root, 0);
+        }
+
+        public boolean find(int target) {
+            this.exists = false;
+            find(this.root, 0, target);
+            return this.exists;
+        }
+
+        private void find(TreeNode root, int val, int target) {
+            if (root == null) {
+                return;
+            }
+            if (root.val == -1) {
+                root.val = val;
+            }
+            if (root.val == target) {
+                exists = true;
+                return;
+            }
+            find(root.left, val * 2 + 1, target);
+            find(root.right, val * 2 + 2, target);
+        }
+    }
+
     //Runtime: 1584 ms, faster than 5.07% of Java online submissions for Find Elements in a Contaminated Binary Tree.
     //Memory Usage: 52.5 MB, less than 73.25% of Java online submissions for Find Elements in a Contaminated Binary Tree.
     class FindElements {

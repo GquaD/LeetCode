@@ -15,6 +15,18 @@ public class LeetCodeUtils {
         System.out.println(s.substring(0, s.length() - 2));
     }
 
+    public static void printListWithListsOfIntegers(List<List<Integer>> list) {
+        for (int i = 0; i < list.size(); i++) {
+            printList(list.get(i));
+        }
+    }
+
+    public static void printListWithListsOfStrings(List<List<String>> list) {
+        for (int i = 0; i < list.size(); i++) {
+            printList(list.get(i));
+        }
+    }
+
     public static Map<Integer, Integer> getFrequencyMap(int[] nums) {
         Map<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {

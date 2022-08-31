@@ -13,6 +13,7 @@ public class Problem692 {
         LeetCodeUtils.printList(topKFrequent(new String[]{"the","day","is","sunny","the","the","the","sunny","is","is"}, 4));
     }
 
+    //25 mins
     //Runtime: 17 ms, faster than 7.90% of Java online submissions for Top K Frequent Words.
     //Memory Usage: 45.4 MB, less than 35.44% of Java online submissions for Top K Frequent Words.
     static List<String> topKFrequent(String[] words, int k) {

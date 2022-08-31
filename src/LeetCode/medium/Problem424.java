@@ -34,6 +34,7 @@ public class Problem424 {
             String left = moveLeft(longest, s);
             String right = moveRight(longest, s);
         }
+        return 0;
     }
 
     private static String moveLeft(Pair longest, String s) {

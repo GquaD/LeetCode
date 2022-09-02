@@ -7,6 +7,10 @@ import java.util.Map;
 
 public class LeetCodeUtils {
     public static void printList(List list) {
+        if (list.size() == 0) {
+            System.out.println("List is empty");
+            return;
+        }
         StringBuilder sb = new StringBuilder();
         for (Object obj : list) {
             sb.append(obj + ", ");

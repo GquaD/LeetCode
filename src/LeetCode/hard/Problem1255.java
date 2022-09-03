@@ -80,6 +80,8 @@ public class Problem1255 {
         return max;
     }
 
+    //write down a code that iterates over all possible combinations
+
     static int maxScoreWords2(String[] words, char[] letters, int[] score) {
         int[] points = new int[words.length];
         //scores of each word

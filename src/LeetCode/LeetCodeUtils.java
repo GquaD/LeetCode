@@ -17,6 +17,7 @@ public class LeetCodeUtils {
         }
         String s = sb.toString();
         System.out.println(s.substring(0, s.length() - 2));
+        //check
     }
 
     public static void printListWithListsOfIntegers(List<List<Integer>> list) {

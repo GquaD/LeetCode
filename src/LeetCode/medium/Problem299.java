@@ -8,8 +8,8 @@ public class Problem299 {
         System.out.println(getHint("4271", "1234"));
     }
 
-    //Runtime: 9 ms, faster than 66.96% of Java online submissions for Bulls and Cows.
-    //Memory Usage: 42.2 MB, less than 95.22% of Java online submissions for Bulls and Cows.
+    //Runtime: 5 ms, faster than 93.06% of Java online submissions for Bulls and Cows.
+    //Memory Usage: 43.1 MB, less than 41.68% of Java online submissions for Bulls and Cows.
     static String getHint(String secret, String guess) {
         int[] alphabetS = new int[10];
         int[] alphabetG = new int[10];

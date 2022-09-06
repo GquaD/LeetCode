@@ -13,8 +13,8 @@ public class Problem394 {
     }
 
 
-    //Runtime: 2 ms, faster than 60.01% of Java online submissions for Decode String.
-    //Memory Usage: 42.7 MB, less than 17.17% of Java online submissions for Decode String.
+    //Runtime: 2 ms, faster than 59.96% of Java online submissions for Decode String.
+    //Memory Usage: 41.5 MB, less than 82.55% of Java online submissions for Decode String
     static String decodeString(String s) {
         Stack<Character> stackBraces = new Stack<>();
         Stack<Integer> stackMultipliers = new Stack<>();

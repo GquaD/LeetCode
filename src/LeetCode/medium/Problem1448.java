@@ -4,8 +4,9 @@ import java.util.ArrayList;
 
 public class Problem1448 {
     //https://leetcode.com/problems/count-good-nodes-in-binary-tree/
+
     public static void main(String[] args) {
-        TreeNode node1 = new TreeNode(2);
+        TreeNode node1 = new TreeNode(3);
         TreeNode node2 = new TreeNode(1);
         TreeNode node3 = new TreeNode(4);
         TreeNode node4 = new TreeNode(3);
@@ -42,8 +43,29 @@ public class Problem1448 {
         int num2 = goodNodes(nc1);
         System.out.println(num2);
     }
-    static int count = 0;
+    //my solution posted
+    //https://leetcode.com/problems/count-good-nodes-in-binary-tree/discuss/2540091/Java-Simple-DFS-Solution
+    //10 - 15 mins
+    //Runtime: 3 ms, faster than 78.53% of Java online submissions for Count Good Nodes in Binary Tree.
+    //Memory Usage: 59.5 MB, less than 67.52% of Java online submissions for Count Good Nodes in Binary Tree.
+    static int count;
     static int goodNodes(TreeNode root) {
+        count = 0;
+        traverseBTForGood(root, -20_000);
+        return count;
+    }
+
+    private static void traverseBTForGood(TreeNode node, int max) {
+        if (node == null) return;
+        if (node.val >= max) {
+            count++;
+            max = node.val;
+        }
+        traverseBTForGood(node.left, max);
+        traverseBTForGood(node.right, max);
+    }
+
+    static int goodNodes1(TreeNode root) {
         count = 0;
         traverseBT(root, new ArrayList<TreeNode>());
         return count;

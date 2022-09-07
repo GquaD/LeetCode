@@ -8,8 +8,30 @@ public class Problem1557 {
 
     }
 
-    //wrong
+    //5 mins
+    //just finding those, which don't have incoming indices
+    //Runtime: 16 ms, faster than 58.06% of Java online submissions for Minimum Number of Vertices to Reach All Nodes.
+    //Memory Usage: 117.6 MB, less than 84.90% of Java online submissions for Minimum Number of Vertices to Reach All Nodes.
     public List<Integer> findSmallestSetOfVertices(int n, List<List<Integer>> edges) {
+        boolean[] hasIncoming = new boolean[n];
+        for (int i = 0; i < edges.size(); i++) {
+            int val = edges.get(i).get(1);
+            if (!hasIncoming[val]) {
+                hasIncoming[val] = true;
+            }
+        }
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < hasIncoming.length; i++) {
+            if (!hasIncoming[i]) {
+                list.add(i);
+            }
+        }
+        return list;
+    }
+
+    //wrong
+
+    public List<Integer> findSmallestSetOfVertices1(int n, List<List<Integer>> edges) {
         Map<Integer, List<Integer>> map = new LinkedHashMap<>();
         Set<Integer> allNums = new HashSet<>();
         for (int i = 0; i < edges.size(); i++) {

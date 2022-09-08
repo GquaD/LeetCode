@@ -20,6 +20,7 @@ public class Problem980 {
         }));
     }
 
+    //took 1 hour to solve and extra 10 minutes to optimize
     //Runtime: 1 ms, faster than 91.25% of Java online submissions for Unique Paths III.
     //Memory Usage: 39.8 MB, less than 94.48% of Java online submissions for Unique Paths III.
 

@@ -21,9 +21,11 @@ public class Problem980 {
     }
 
     //Runtime: 1 ms, faster than 91.25% of Java online submissions for Unique Paths III.
-    //Memory Usage: 41.1 MB, less than 78.25% of Java online submissions for Unique Paths III.
+    //Memory Usage: 39.8 MB, less than 94.48% of Java online submissions for Unique Paths III.
 
     static int count;
+    static int rowEnd;
+    static int colEnd;
 
     static int uniquePathsIII(int[][] grid) {
         count = 0;
@@ -31,14 +33,47 @@ public class Problem980 {
 
         Coordinates coordinates = new Coordinates();
         findStartAndEndPositions(coordinates, grid);
+        rowEnd = coordinates.yEnd;
+        colEnd = coordinates.xEnd;
 
         boolean[][] visited = new boolean[m][n];
         makeAllObstaclesVisited(visited, grid);
-        /*//making true the finish cell so that it will be obstacle, too
-        visited[coordinates.yEnd][coordinates.xStart] = true;*/
 
-        traverseGrid(grid, visited, coordinates, coordinates.yStart, coordinates.xStart);
+        traverseGrid(grid, visited, coordinates.yStart, coordinates.xStart);
         return count;
+    }
+
+    private static void traverseGrid(int[][] grid, boolean[][] visited, int row, int col) {
+        if (row == rowEnd && col == colEnd) {
+            visited[row][col] = true;
+            if (allVisited(visited)) {
+                count++;
+            }
+            visited[row][col] = false;
+            return;
+        }
+
+        if (!cellExist(row, col, grid) || visited[row][col]) return;
+
+        visited[row][col] = true;
+
+        //right
+        if (cellExist(row, col + 1, grid) && !visited[row][col + 1]) {
+            traverseGrid(grid, visited, row, col + 1);
+        }
+        //down
+        if (cellExist(row + 1, col, grid) && !visited[row + 1][col]) {
+            traverseGrid(grid, visited, row + 1, col);
+        }
+        //left
+        if (cellExist(row, col - 1, grid) && !visited[row][col - 1]) {
+            traverseGrid(grid, visited, row, col - 1);
+        }
+        //up
+        if (cellExist(row - 1, col, grid) && !visited[row - 1][col]) {
+            traverseGrid(grid, visited, row - 1, col);
+        }
+        visited[row][col] = false;
     }
 
     private static void makeAllObstaclesVisited(boolean[][] visited, int[][] grid) {
@@ -49,40 +84,6 @@ public class Problem980 {
                 }
             }
         }
-    }
-
-    private static void traverseGrid(int[][] grid, boolean[][] visited, Coordinates coordinates, int row, int col) {
-        if (row == coordinates.yEnd && col == coordinates.xEnd) {
-            visited[row][col] = true;
-            if (allVisited(visited)) {
-                count++;
-            }
-            visited[row][col] = false;
-
-            return;
-        }
-
-        if (!cellExist(row, col, grid) || visited[row][col]) return;
-
-        visited[row][col] = true;
-
-        //right
-        if (cellExist(row, col + 1, grid) && !visited[row][col + 1]) {
-            traverseGrid(grid, visited, coordinates, row, col + 1);
-        }
-        //down
-        if (cellExist(row + 1, col, grid) && !visited[row + 1][col]) {
-            traverseGrid(grid, visited, coordinates, row + 1, col);
-        }
-        //left
-        if (cellExist(row, col - 1, grid) && !visited[row][col - 1]) {
-            traverseGrid(grid, visited, coordinates, row, col - 1);
-        }
-        //up
-        if (cellExist(row - 1, col, grid) && !visited[row - 1][col]) {
-            traverseGrid(grid, visited, coordinates, row - 1, col);
-        }
-        visited[row][col] = false;
     }
 
     private static boolean allVisited(boolean[][] visited) {
@@ -121,13 +122,6 @@ public class Problem980 {
 
     static class Coordinates {
         int xStart, yStart, xEnd, yEnd;
-
-        public Coordinates(int xStart, int yStart, int xEnd, int yEnd) {
-            this.xStart = xStart;
-            this.yStart = yStart;
-            this.xEnd = xEnd;
-            this.yEnd = yEnd;
-        }
 
         public Coordinates() {
             xStart = yStart = xEnd = yEnd = -1;

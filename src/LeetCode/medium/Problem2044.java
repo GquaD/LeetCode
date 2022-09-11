@@ -9,8 +9,8 @@ public class Problem2044 {
     }
 
     //2-3 hours
-    //Runtime: 13 ms, faster than 68.92% of Java online submissions for Count Number of Maximum Bitwise-OR Subsets.
-    //Memory Usage: 41.7 MB, less than 60.96% of Java online submissions for Count Number of Maximum Bitwise-OR Subsets.
+    //Runtime: 14 ms, faster than 65.34% of Java online submissions for Count Number of Maximum Bitwise-OR Subsets.
+    //Memory Usage: 41.2 MB, less than 87.25% of Java online submissions for Count Number of Maximum Bitwise-OR Subsets.
     static int count;
     static int max;
     static int[] arr;
@@ -34,8 +34,7 @@ public class Problem2044 {
         if (orResult == max) {
             count++;
         }
-        idxStart++;
-        for (int i = idxStart; i < arr.length; i++) {
+        for (int i = idxStart + 1; i < arr.length; i++) {
             findCount(i, orResult);
         }
     }

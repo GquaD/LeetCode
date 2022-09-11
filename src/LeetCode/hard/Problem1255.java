@@ -29,9 +29,95 @@ public class Problem1255 {
         //actual:74
         //expected:78
     }
+    //https://leetcode.com/problems/maximum-score-words-formed-by-letters/discuss/2562770/Java-Solution-or-Brute-Force-Approach-or-Explained
 
-    //3rd version (not considering all combinations)
+    //Runtime: 2256 ms, faster than 5.01% of Java online submissions for Maximum Score Words Formed by Letters.
+    //Memory Usage: 45.8 MB, less than 11.76% of Java online submissions for Maximum Score Words Formed by Letters.
+    static List<List<Pair>> combinations;
+    static List<Pair> allPairs;
     static int maxScoreWords(String[] words, char[] letters, int[] score) {
+        int[] points = new int[words.length];
+        //scores of each word
+        List<Pair> list = new ArrayList<>();
+        for (int i = 0; i < words.length; i++) {
+            for (int j = 0; j < words[i].length(); j++) {
+                int index = words[i].charAt(j) - 97;
+                points[i] += score[index];
+            }
+            Pair pair = new Pair(words[i], points[i]);
+            list.add(pair);
+        }
+        allPairs = list;
+        combinations = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            findCombination(i, new ArrayList<>());
+        }
+        ///-----------------------------------------
+
+        int[] finalScores = new int[combinations.size()];
+        for (int k = 0; k < combinations.size(); k++) {
+            String lettersString = new String(letters);
+            String lettersCheck = new String(letters);
+            List<Pair> listTemp = combinations.get(k);
+            int scoreFinal = 0;
+            for (int i = 0; i < listTemp.size(); i++) {
+                Pair pair = listTemp.get(i);
+                boolean fullyContains = true;
+                lettersCheck = new String(lettersString);
+                for (int j = 0; j < pair.word.length(); j++) {
+                    if (!lettersCheck.contains(pair.word.charAt(j) + "")) {
+                        fullyContains = false;
+                        break;
+                    }
+                    lettersCheck = lettersCheck.replaceFirst(pair.word.charAt(j) + "", "");
+                }
+                if (!fullyContains) {
+                    continue;
+                }
+                for (int j = 0; j < pair.word.length(); j++) {
+                    lettersString = lettersString.replaceFirst(pair.word.charAt(j) + "", "");
+                }
+                scoreFinal += pair.score;
+            }
+            finalScores[k] = scoreFinal;
+        }
+
+        int max = 0;
+        for (int i = 0; i < finalScores.length; i++) {
+            if (max < finalScores[i]) {
+                max = finalScores[i];
+            }
+        }
+        return max;
+
+    }
+
+    private static void findCombination(int idxStart, List<Pair> list) {
+        if (idxStart >= allPairs.size()) {
+            combinations.add(new ArrayList<>(list));
+            return;
+        }
+        list.add(allPairs.get(idxStart));
+        for (int i = idxStart + 1; i <= allPairs.size(); i++) {
+            findCombination(i, list);
+        }
+        list.remove(list.size() - 1);
+    }
+
+
+    static class Pair {
+        String word;
+        int score;
+
+        public Pair(String word, int score) {
+            this.word = word;
+            this.score = score;
+        }
+    }
+
+    //3rd version (not considering all combinations)  asd
+
+    static int maxScoreWords3(String[] words, char[] letters, int[] score) {
         int[] points = new int[words.length];
         //scores of each word
         List<Pair> list = new ArrayList<>();
@@ -79,6 +165,9 @@ public class Problem1255 {
         }
         return max;
     }
+
+
+
 
     //write down a code that iterates over all possible combinations
 
@@ -177,15 +266,5 @@ public class Problem1255 {
             }
         }
         return maxPoints;
-    }
-
-    static class Pair {
-        String word;
-        int score;
-
-        public Pair(String word, int score) {
-            this.word = word;
-            this.score = score;
-        }
     }
 }

@@ -19,9 +19,50 @@ public class Problem2275 {
         System.out.println(largestCombination(new int[]{33,93,31,99,74,37,3,4,2,94,77,10,75,54,24,95,65,100,41,82,35,65,38,49,85,72,67,21,20,31}));
     }
 
+    //Runtime: 142 ms, faster than 11.71% of Java online submissions for Largest Combination With Bitwise AND Greater Than Zero.
+    //Memory Usage: 80.1 MB, less than 66.66% of Java online submissions for Largest Combination With Bitwise AND Greater Than Zero.
+
+    static int largestCombination(int[] candidates) {
+        int size = Integer.toBinaryString(10_000_000).length();
+        int[] count = new int[size];
+        int maxLen = 0;
+        for (int i = 0; i < candidates.length; i++) {
+            String bin = Integer.toBinaryString(candidates[i]);
+            for (int j = 0; j < bin.length(); j++) {
+                if (bin.charAt(j) == '1') {
+                    count[size - bin.length() + j]++;
+                }
+            }
+        }
+        int max = 0;
+        for (int j = 0; j < count.length; j++) {
+            if (max < count[j]) max = count[j];
+        }
+        return max;
+    }
+
+    static int largestCombination4(int[] candidates) {
+        int size = Integer.toBinaryString(10_000_000).length();
+        int[] count = new int[size];
+        for (int i = 0; i < candidates.length; i++) {
+            int n = candidates[i];
+            for (int j = 0; j < size; j++) {
+                int left = 1 << j;
+                if ((n & left) > 0) {
+                    count[j]++;
+                }
+            }
+        }
+        int max = 0;
+        for (int j = 0; j < count.length; j++) {
+            if (max < count[j]) max = count[j];
+        }
+        return max;
+    }
+
     //Runtime: 170 ms, faster than 9.46% of Java online submissions for Largest Combination With Bitwise AND Greater Than Zero.
     //Memory Usage: 60.9 MB, less than 89.19% of Java online submissions for Largest Combination With Bitwise AND Greater Than Zero.
-    static int largestCombination(int[] candidates) {
+    static int largestCombination3(int[] candidates) {
         int maxLen = 0;
         List<String> binaries = new ArrayList<>(candidates.length);
         for (int i = 0; i < candidates.length; i++) {

@@ -13,15 +13,44 @@ public class Problem2275 {
             temp &= arr[i];
         }
 
+        System.out.println(largestCombination(new int[]{16,16,48,71,62,12,24,14,17,18,19,20,10000}));
         System.out.println(largestCombination(new int[]{16, 17, 71, 62, 12, 24, 14}));
         System.out.println(largestCombination(new int[]{8, 8}));
         System.out.println(largestCombination(new int[]{33,93,31,99,74,37,3,4,2,94,77,10,75,54,24,95,65,100,41,82,35,65,38,49,85,72,67,21,20,31}));
     }
 
+    //Runtime: 170 ms, faster than 9.46% of Java online submissions for Largest Combination With Bitwise AND Greater Than Zero.
+    //Memory Usage: 60.9 MB, less than 89.19% of Java online submissions for Largest Combination With Bitwise AND Greater Than Zero.
+    static int largestCombination(int[] candidates) {
+        int maxLen = 0;
+        List<String> binaries = new ArrayList<>(candidates.length);
+        for (int i = 0; i < candidates.length; i++) {
+            String str = Integer.toBinaryString(candidates[i]);
+            if (maxLen < str.length()) {
+                maxLen = str.length();
+            }
+            binaries.add(str);
+        }
+
+        int res = 0;
+        for (int i = 0; i < maxLen; i++) {//columns
+            int countOnes = 0;
+            for (String bin : binaries) {
+                if (bin.length() >= maxLen - i) {
+                    if (bin.charAt(i - (maxLen - bin.length())) == '1') {
+                        countOnes++;
+                    }
+                }
+            }
+            if (res < countOnes) res = countOnes;
+        }
+        return res;
+    }
+
     //1 hour
     //Runtime: 275 ms, faster than 6.30% of Java online submissions for Largest Combination With Bitwise AND Greater Than Zero.
     //Memory Usage: 139.1 MB, less than 5.40% of Java online submissions for Largest Combination With Bitwise AND Greater Than Zero.
-    static int largestCombination(int[] candidates) {
+    static int largestCombination2(int[] candidates) {
         //find binary representation of each number
         //put in a table
         //find those which cause 0 when applying bitwise AND operation

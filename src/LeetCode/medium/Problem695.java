@@ -27,6 +27,9 @@ public class Problem695 {
         }));
     }
 
+    //1 hour
+    //Runtime: 9 ms, faster than 13.36% of Java online submissions for Max Area of Island.
+    //Memory Usage: 47.1 MB, less than 67.80% of Java online submissions for Max Area of Island.
     static int maxArea;
     static int tempArea;
 

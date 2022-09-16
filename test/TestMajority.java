@@ -1,4 +1,4 @@
-import LeetCode.Problem169;
+import LeetCode.easy.Problem169;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

@@ -11,11 +11,26 @@ public class Problem718 {
     }
 
 
+    //not my solution
+    static int findLength(int[] A, int[] B) {
+        int ans = 0;
+        int[][] memo = new int[A.length + 1][B.length + 1];
+        for (int i = A.length - 1; i >= 0; --i) {
+            for (int j = B.length - 1; j >= 0; --j) {
+                if (A[i] == B[j]) {
+                    memo[i][j] = memo[i+1][j+1] + 1;
+                    if (ans < memo[i][j]) ans = memo[i][j];
+                }
+            }
+        }
+        return ans;
+    }
 
+    //1 hour
     //57 / 57 test cases passed, but took too long.
     //Runtime: 2759 ms, faster than 5.04% of Java online submissions for Maximum Length of Repeated Subarray.
     //Memory Usage: 44.7 MB, less than 94.80% of Java online submissions for Maximum Length of Repeated Subarray.
-    static int findLength(int[] nums1, int[] nums2) {
+    static int findLength2(int[] nums1, int[] nums2) {
         int maxLength = 0;
         for (int i = 0; i < nums1.length; i++) {
             for (int j = 0; j < nums2.length; j++) {

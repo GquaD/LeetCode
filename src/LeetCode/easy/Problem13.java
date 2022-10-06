@@ -1,4 +1,4 @@
-package LeetCode.medium;
+package LeetCode.easy;
 
 
 public class Problem13 {

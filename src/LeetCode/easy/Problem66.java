@@ -11,7 +11,7 @@ public class Problem66 {
     }
     //check
     //https://leetcode.com/problems/plus-one/solutions/2675965/java-100-faster-solution/
-    //10-15mins
+    //10-15 mins
     //Runtime
     //0 ms
     //Beats

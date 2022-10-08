@@ -10,6 +10,7 @@ public class Problem58 {
 
     //https://leetcode.com/problems/length-of-last-word/solutions/2675920/java-100-faster-in-just-few-lines/
     //less than 10 mins
+
     //Runtime
     //0 ms
     //Beats

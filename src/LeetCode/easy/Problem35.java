@@ -14,6 +14,7 @@ public class Problem35 {
 
     //less than 5 mins
     //https://leetcode.com/problems/search-insert-position/solutions/2675868/java-just-2-lines-100-faster/
+
     //Runtime
     //0 ms
     //Beats

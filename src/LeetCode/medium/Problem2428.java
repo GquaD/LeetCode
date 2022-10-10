@@ -8,6 +8,7 @@ public class Problem2428 {
     }
 
     //https://leetcode.com/problems/maximum-sum-of-an-hourglass/solutions/2681803/java-straighforward-approach/
+    //10 mins
     //Runtime
     //19 ms
     //Beats

@@ -11,6 +11,7 @@ public class Problem36 {
     }
 
     //5-10 more minutes
+
     //https://leetcode.com/problems/valid-sudoku/solutions/2701434/java-98-faster-o-n-only-arrays-used/
     //Runtime
     //2 ms

@@ -10,7 +10,7 @@ public class Problem145 {
 
     }
 
-    //https://leetcode.com/problems/binary-tree-postorder-traversal/solutions/2745944/java-recursive-dfs-postorder/
+    //https://leetcode.com/problems/binary-tree-postorder-traversal/solutions/2745944/java-recursive-dfs-postorder-100-faster/
     //5 mins, refer problem94
     //Runtime
     //0 ms

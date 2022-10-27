@@ -42,6 +42,7 @@ public class Problem835 {
         }
 
         int overlaps = 0;
+        //here I start from such i, because I want to go to left and up for n - 1 for each coordinate
         for (int i = 1 - img1.length; i < img1.length; i++) {
             for (int j = 1 - img1[0].length; j < img1[0].length; j++) {
                 int tempOverlaps = 0;

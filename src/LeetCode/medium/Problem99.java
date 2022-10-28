@@ -22,25 +22,36 @@ public class Problem99 {
         recoverTree(n1);
     }
 
+    static boolean swapDone;
     static void recoverTree(TreeNode root) {
+        swapDone = false;
         List<TreeNode> list = new ArrayList<>();
         list.add(root);
-        recoverTreeRecursiveLeft(root.left, list);
+        recoverTreeRecursive(root.left, list, new ArrayList<>());
+        if (swapDone) return;
         list.clear();
         list.add(root);
-        recoverTreeRecursiveRight(root.right, list);
+        recoverTreeRecursive(root.right, new ArrayList<>(), list);
     }
 
-    static void recoverTreeRecursiveLeft(TreeNode node, List<TreeNode> parents) {
+    private static void recoverTreeRecursive(TreeNode node, List<TreeNode> parentsToBeLessFrom, List<TreeNode> parentsToBeGreaterFrom) {
         if (node == null) return;
 
-        for (int i = 0; i < parents.size(); i++) {
-            TreeNode parent = parents.get(i);
+        for (int i = 0; i < parentsToBeLessFrom.size(); i++) {
+            TreeNode parent = parentsToBeLessFrom.get(i);
             if (node.val > parent.val) {
                 swapValues(node, parent);
                 return;
             }
         }
+        for (int i = 0; i < parentsToBeGreaterFrom.size(); i++) {
+            TreeNode parent = parentsToBeGreaterFrom.get(i);
+            if (node.val < parent.val) {
+                swapValues(node, parent);
+                return;
+            }
+        }
+
         if (node.left != null && node.left.val > node.val) {
             swapValues(node, node.left);
             return;
@@ -50,9 +61,19 @@ public class Problem99 {
             return;
         }
 
-        parents.add(node);
-        recoverTreeRecursiveLeft(node.left, parents);
-        recoverTreeRecursiveLeft(node.right, parents);
+        parentsToBeLessFrom.add(node);
+        recoverTreeRecursive(node.left, parentsToBeLessFrom, parentsToBeGreaterFrom);
+        parentsToBeLessFrom.remove(parentsToBeLessFrom.size() - 1);
+        parentsToBeGreaterFrom.add(node);
+        recoverTreeRecursive(node.right, parentsToBeLessFrom, parentsToBeGreaterFrom);
+        parentsToBeGreaterFrom.remove(parentsToBeGreaterFrom.size() - 1);
+    }
+
+    private static void swapValues(TreeNode one, TreeNode two) {
+        int temp = one.val;
+        one.val = two.val;
+        two.val = temp;
+        swapDone = true;
     }
 
     static void recoverTreeRecursiveRight(TreeNode node, List<TreeNode> parents) {
@@ -77,12 +98,6 @@ public class Problem99 {
         parents.add(node);
         recoverTreeRecursiveRight(node.left, parents);
         recoverTreeRecursiveRight(node.right, parents);
-    }
-
-    static void swapValues(TreeNode one, TreeNode two) {
-        int temp = one.val;
-        one.val = two.val;
-        two.val = temp;
     }
 
     static void recoverTreeRecursive(TreeNode root, List<TreeNode> parents) {

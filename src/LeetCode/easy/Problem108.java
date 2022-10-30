@@ -7,8 +7,7 @@ public class Problem108 {
     }
 
 
-
-    //https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/submissions/833161319/
+    //https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/solutions/2758563/java-recursive-solution-in-just-1-ms/
     //Runtime
     //1 ms
     //Beats

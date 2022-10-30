@@ -1,4 +1,4 @@
-package LeetCode.easy;
+package LeetCode.medium;
 
 import java.util.HashMap;
 
@@ -27,6 +27,7 @@ public class Problem62 {
         System.out.println(makeString(4, 8));
         System.out.println(makeString(4, 9));
         System.out.println(makeString(4, 10));
+        System.out.println(makeString(5, 5));
         System.out.println(uniquePaths2(19, 13));
         System.out.println(uniquePaths2(13, 23));
     }

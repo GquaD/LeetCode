@@ -15,6 +15,7 @@ public class Problem1025 {
     //40.7 MB
     //Beats
     //62.83%
+    //solved myself (in case it may seem it was not)
     public boolean divisorGame(int n) {
         return n % 2 == 0;
     }

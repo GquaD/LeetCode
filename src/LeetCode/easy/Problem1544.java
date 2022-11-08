@@ -8,6 +8,28 @@ public class Problem1544 {
         System.out.println(makeGood("qFxXfQo"));
     }
 
+    //https://leetcode.com/problems/make-the-string-great/solutions/2791757/java-2-solutions-from-42-to-99-time/
+    //Runtime
+    //2 ms
+    //Beats
+    //98.79%
+    //Memory
+    //42 MB
+    //Beats
+    //89.62%
+    static String makeGood(String s) {
+        int idx = 0, diff = Math.abs('a' - 'A');
+        while (idx + 1 < s.length()) {
+            char p = s.charAt(idx), n = s.charAt(idx + 1);
+            if (Math.abs(n - p) == diff) {
+                s = s.substring(0, idx) + s.substring(idx + 2);
+                idx = Math.max(idx - 1, 0);
+            } else {
+                idx++;
+            }
+        }
+        return s;
+    }
 
     //30 mins
     //Runtime
@@ -18,7 +40,7 @@ public class Problem1544 {
     //43.9 MB
     //Beats
     //5.71%
-    static String makeGood(String s) {
+    static String makeGood2(String s) {
         while (hasTwoAdjacent(s)) {
             s = makeGoodRecursively(s, 0);
         }
@@ -49,7 +71,6 @@ public class Problem1544 {
             } else if (s.length() == 2) {
                 s = "";
             }
-            idx++;
         }
         return makeGoodRecursively(s, idx + 1);
     }

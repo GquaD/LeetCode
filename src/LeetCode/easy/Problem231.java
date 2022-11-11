@@ -1,5 +1,6 @@
 package LeetCode.easy;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,6 +15,34 @@ public class Problem231 {
     }
 
 
+
+
+    //Runtime
+    //2 ms
+    //Beats
+    //82.54%
+    //Memory
+    //41.5 MB
+    //Beats
+    //37.12%
+    static int[] vals = new int[31];
+    static boolean isPowerOfTwo(int n) {
+        if (n < 1) return false;
+        if (vals[0] == 0) {
+            fillVals();
+        }
+        for (int v : vals) {
+            if (n == v) return true;
+        }
+        return false;
+    }
+
+    private static void fillVals() {
+        for (int i = 0; i < vals.length; i++) {
+            vals[i] = (int) Math.pow(2, i);
+        }
+    }
+
     //Runtime
     //3 ms
     //Beats
@@ -23,7 +52,7 @@ public class Problem231 {
     //Beats
     //22.16%
     static Set<Integer> set = new HashSet<>();
-    static boolean isPowerOfTwo(int n) {
+    static boolean isPowerOfTwo2(int n) {
         if (n < 1) return false;
         if (set.size() == 0) {
             fillSet();
@@ -51,7 +80,7 @@ public class Problem231 {
     //61.66%
     static int[] values = new int[32];
 
-    static boolean isPowerOfTwo2(int n) {
+    static boolean isPowerOfTwo1(int n) {
         if (n < 1) return false;
         if (values[0] == 0) {
             fillValues();

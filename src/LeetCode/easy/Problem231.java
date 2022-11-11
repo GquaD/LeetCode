@@ -1,5 +1,8 @@
 package LeetCode.easy;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Problem231 {
     //https://leetcode.com/problems/power-of-two/
 
@@ -11,7 +14,31 @@ public class Problem231 {
     }
 
 
+    //Runtime
+    //3 ms
+    //Beats
+    //14.6%
+    //Memory
+    //41.6 MB
+    //Beats
+    //22.16%
+    static Set<Integer> set = new HashSet<>();
+    static boolean isPowerOfTwo(int n) {
+        if (n < 1) return false;
+        if (set.size() == 0) {
+            fillSet();
+        }
+        if (set.contains(n)) return true;
+        return false;
+    }
 
+    private static void fillSet() {
+        int mult = 1;
+        while (mult > 0) {
+            set.add(mult);
+            mult *= 2;
+        }
+    }
 
     //5 mins
     //Runtime
@@ -23,7 +50,8 @@ public class Problem231 {
     //Beats
     //61.66%
     static int[] values = new int[32];
-    static boolean isPowerOfTwo(int n) {
+
+    static boolean isPowerOfTwo2(int n) {
         if (n < 1) return false;
         if (values[0] == 0) {
             fillValues();

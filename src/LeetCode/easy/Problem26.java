@@ -9,6 +9,7 @@ public class Problem26 {
         System.out.println(removeDuplicates2(new int[]{0,0,1,1,1,2,2,3,3,4}));
     }
 
+    //https://leetcode.com/problems/remove-duplicates-from-sorted-array/solutions/2802478/java-100-faster-solution/
     public static int removeDuplicates(int[] nums) {
         int[] result = new int[nums.length];
         int temp = nums[0], count = 0;

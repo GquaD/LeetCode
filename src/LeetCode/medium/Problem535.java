@@ -7,7 +7,7 @@ public class Problem535 {
     //https://leetcode.com/problems/encode-and-decode-tinyurl/
 
 
-
+    //https://leetcode.com/problems/encode-and-decode-tinyurl/solutions/2816315/java-straightforward-solution-hashmap/
     //Runtime: 3 ms, faster than 81.51% of Java online submissions for Encode and Decode TinyURL.
     //Memory Usage: 43.8 MB, less than 30.82% of Java online submissions for Encode and Decode TinyURL.
     static class Codec {

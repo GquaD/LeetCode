@@ -8,7 +8,7 @@ public class Problem869 {
         System.out.println(reorderedPowerOf2(812));
     }
 
-    //https://leetcode.com/problems/reordered-power-of-2/submissions/845871288/
+    //https://leetcode.com/problems/reordered-power-of-2/solutions/2827694/java-100-faster-1-ms-solution-explained/
     //10-20 min
     //Runtime
     //1 ms

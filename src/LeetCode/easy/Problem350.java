@@ -11,6 +11,7 @@ public class Problem350 {
 
     }
 
+    //https://leetcode.com/problems/intersection-of-two-arrays-ii/solutions/2862073/java-from-13ms-to-5ms-2-solutions/
 
     //Runtime
     //5 ms
@@ -20,10 +21,11 @@ public class Problem350 {
     //43.9 MB
     //Beats
     //52.83%
-    int[] arr1 = new int[1001];
-    int[] arr2 = new int[1001];
+    static int[] arr1 = new int[1001];
+    static int[] arr2 = new int[1001];
 
     public int[] intersect(int[] nums1, int[] nums2) {
+        clearArrays();
         for (int n : nums1) {
             arr1[n]++;
         }
@@ -43,6 +45,15 @@ public class Problem350 {
             res[i] = list.get(i);
         }
         return res;
+    }
+
+    private void clearArrays() {
+        for (int i = 0; i < arr1.length; i++) {
+            arr1[i] = 0;
+        }
+        for (int i = 0; i < arr2.length; i++) {
+            arr2[i] = 0;
+        }
     }
 
 

@@ -27,4 +27,14 @@ public class Problem2465 {
         }
         return (int) list.stream().distinct().count();
     }
+
+    public int distinctAverages1(int[] nums) {
+        Arrays.sort(nums);
+        Set<Float> set = new HashSet<>();
+        int half = nums.length / 2;
+        for (int i = 0; i < half; i++) {
+            set.add((nums[i] + nums[nums.length - 1 - i]) / 2.0F);
+        }
+        return set.size();
+    }
 }

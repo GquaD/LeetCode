@@ -15,7 +15,7 @@ public class Problem1 {
     }
 
     public static void one() {
-        File file = new File("src/adventofcode/files/input1_2.txt");
+        File file = new File("src/adventofcode/files/input1.txt");
         try {
             FileReader fr = new FileReader(file);
             BufferedReader in = new BufferedReader(fr);
@@ -42,7 +42,7 @@ public class Problem1 {
     }
 
     public static void two() {
-        File file = new File("src/adventofcode/files/input1_2.txt");
+        File file = new File("src/adventofcode/files/input1.txt");
         try {
             FileReader fr = new FileReader(file);
             BufferedReader in = new BufferedReader(fr);

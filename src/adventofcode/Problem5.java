@@ -6,7 +6,6 @@ import java.util.Stack;
 
 public class Problem5 {
     private static final String PATH1 = Utility.FILE_PATH + "input5_1.txt";
-    private static final String PATH2 = Utility.FILE_PATH + "input5_2.txt";
 
     public static void main(String[] args) {
         try {
@@ -14,8 +13,6 @@ public class Problem5 {
             System.out.println("////////////////");
             two(PATH1);
             System.out.println("////////////////");
-            three(PATH2);
-            four(PATH2);
 //            one(PATH2);
         } catch (Exception e) {
             System.out.println(e.getLocalizedMessage());

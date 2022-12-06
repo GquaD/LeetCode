@@ -7,14 +7,11 @@ import java.io.FileReader;
 public class Problem2 {
     //https://adventofcode.com/2022/day/2
     private static final String PATH1 = Utility.FILE_PATH + "input2_1.txt";
-    private static final String PATH2 = Utility.FILE_PATH + "input2_2.txt";
     public static void main(String[] args) {
         System.out.println("///////////input2_1///////////");
         one(PATH1);
         two(PATH1);
         System.out.println("///////////input2_2///////////");
-        one(PATH2);
-        two(PATH2);
 
     }
     //input2_1

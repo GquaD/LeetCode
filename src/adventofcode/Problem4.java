@@ -6,12 +6,10 @@ import java.io.IOException;
 public class Problem4 {
     //https://adventofcode.com/2022/day/4
     private static final String PATH1 = Utility.FILE_PATH + "input4_1.txt";
-    private static final String PATH2 = Utility.FILE_PATH + "input4_2.txt";
     public static void main(String[] args) {
         try {
             one(PATH1);
             System.out.println("////////////////");
-            one(PATH2);
         } catch (Exception e) {
             System.out.println(e.getLocalizedMessage());
         }

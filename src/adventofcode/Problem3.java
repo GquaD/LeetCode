@@ -6,16 +6,12 @@ import java.io.IOException;
 public class Problem3 {
     private static final String PATH1 = Utility.FILE_PATH + "input3_1.txt";
     private static final String PATH2 = Utility.FILE_PATH + "input3_2.txt";
-    private static final String PATH3 = Utility.FILE_PATH + "input3new_1.txt";
-    private static final String PATH4 = Utility.FILE_PATH + "input3new_1.txt";
 
     public static void main(String[] args) {
         try {
             one(PATH1);
             two(PATH2);
             System.out.println("////////////////////");
-            one(PATH3);
-            two(PATH4);
         } catch (Exception e) {
             System.out.println(e.getLocalizedMessage());
         }

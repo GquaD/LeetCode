@@ -1,4 +1,4 @@
-package LeetCode.easy;
+package LeetCode.medium;
 
 import LeetCode.LeetCodeUtils;
 
@@ -16,6 +16,14 @@ public class Problem1441 {
 
     //Runtime: 1 ms, faster than 53.29% of Java online submissions for Build an Array With Stack Operations.
     //Memory Usage: 44 MB, less than 6.36% of Java online submissions for Build an Array With Stack Operations.
+    //Runtime
+    //0 ms
+    //Beats
+    //100%
+    //Memory
+    //42.3 MB
+    //Beats
+    //88.33%
     static List<String> buildArray(int[] target, int n) {
         List<String> list = new ArrayList<>();
         int count = 0;

@@ -26,17 +26,17 @@ public class Problem841 {
         System.out.println(canVisitAllRooms(rooms));
     }
 
-    //https://leetcode.com/problems/keys-and-rooms/solutions/2671189/java-recursive-solution-97-faster/
+    //https://leetcode.com/problems/keys-and-rooms/solutions/2671189/java-recursive-100-time-99-5-memory-solution/
     //took 1 hour, since I wanted to try solution other than recursion
     //but I thought about recursion in the beginning
     //Runtime
-    //1 ms
+    //0 ms
     //Beats
-    //97.15%
+    //100%
     //Memory
-    //44.4 MB
+    //41.6 MB
     //Beats
-    //66.63%
+    //99.53%
     static boolean[] visited;
     static List<List<Integer>> allRooms;
 

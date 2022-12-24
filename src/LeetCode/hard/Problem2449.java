@@ -10,6 +10,7 @@ public class Problem2449 {
         System.out.println(makeSimilar(new int[]{1, 1, 1, 1, 1}, new int[]{1, 1, 1, 1, 1}));
     }
 
+    //https://leetcode.com/problems/minimum-number-of-operations-to-make-arrays-similar/solutions/2945097/java-99-time-99-5-memory-o-n-nlogn/
     //20-30 mins
     //Runtime
     //44 ms
@@ -48,9 +49,8 @@ public class Problem2449 {
         for (int i = 0; i < oddNums.length; i++) {
             int diff = oddT[i] - oddNums[i];
             if (diff == 0) continue;
-            if (diff > 0) {
-                countUp += diff / 2;
-            } else countDown += Math.abs(diff) / 2;
+            if (diff > 0) countUp += diff / 2;
+            else countDown += Math.abs(diff) / 2;
         }
         for (int i = 0; i < evenNums.length; i++) {
             int diff = evenT[i] - evenNums[i];

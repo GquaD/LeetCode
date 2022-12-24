@@ -13,9 +13,14 @@ public class Problem1 {
         System.out.println(Arrays.toString(twoSum(new int[]{2, 4, 2, 90}, 4)));
     }
 
-    //Runtime: 15 ms, faster than 47.02% of Java online submissions for Two Sum.
-    //Memory Usage: 49.4 MB, less than 5.25% of Java online submissions for Two Sum.
-    //https://leetcode.com/problems/two-sum/discuss/2474504/Java-O(N)-Solution-(in-15-ms)-Explained
+    //Runtime
+    //7 ms
+    //Beats
+    //72.82%
+    //Memory
+    //43.2 MB
+    //Beats
+    //74.63%//https://leetcode.com/problems/two-sum/discuss/2474504/Java-O(N)-Solution-(in-15-ms)-Explained
     static int[] twoSum(int[] nums, int target) {
         //number -> list of indices
         Map<Integer, List<Integer>> map = new HashMap<>();

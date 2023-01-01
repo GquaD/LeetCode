@@ -15,7 +15,7 @@ public class Problem129 {
         System.out.println(sumNumbers(n1));
     }
 
-    //
+    //https://leetcode.com/problems/sum-root-to-leaf-numbers/solutions/2978447/java-1ms-solution-dfs/
     //15 min
     //Runtime
     //1 ms
@@ -44,4 +44,32 @@ public class Problem129 {
         traverseBT(node.right, sb);
         sb.deleteCharAt(sb.length() - 1);
     }
+
+
+    //Runtime
+    //8 ms
+    //Beats
+    //9.68%
+    //Memory
+    //40.7 MB
+    //Beats
+    //65.73%
+/*    static int sum;
+    static int sumNumbers(TreeNode root) {
+        sum = 0;
+        traverseBT(root, "");
+        return sum;
+    }
+
+    private static void traverseBT(TreeNode node, String s) {
+        if (node == null) return;
+
+        s += node.val;
+
+        if (node.left == null && node.right == null) {
+            sum += Integer.parseInt(s);
+        }
+        traverseBT(node.left, s);
+        traverseBT(node.right, s);
+    }*/
 }

@@ -1,5 +1,7 @@
 package LeetCode;
 
+import LeetCode.medium.ListNode;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -48,5 +50,14 @@ public class LeetCodeUtils {
         for (int i = 0; i < arr.length; i++) {
             System.out.println(Arrays.toString(arr[i]));
         }
+    }
+
+    public static ListNode generateList(int[] arr) {
+        ListNode head = new ListNode(arr[0]), temp = head;
+        for (int i = 1; i < arr.length; i++) {
+            temp.next = new ListNode(arr[i]);
+            temp = temp.next;
+        }
+        return head;
     }
 }

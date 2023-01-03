@@ -3,12 +3,12 @@ package LeetCode.medium;
 public class ListNode {
 
     int val;
-    ListNode next;
+    public ListNode next;
 
     ListNode() {
     }
 
-    ListNode(int val) {
+    public ListNode(int val) {
         this.val = val;
     }
 

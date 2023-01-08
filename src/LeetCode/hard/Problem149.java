@@ -10,7 +10,7 @@ public class Problem149 {
         System.out.println(maxPoints(new int[][]{{1,1},{3,2},{5,3},{4,1},{2,3},{1,4}}));
     }
 
-    //https://leetcode.com/problems/max-points-on-a-line/solutions/3018295/java-98-memory-explained-in-details/
+    //https://leetcode.com/problems/max-points-on-a-line/solutions/3018295/java-98-memory-maths-explained-in-details/
     //1 hour
     //Runtime
     //166 ms

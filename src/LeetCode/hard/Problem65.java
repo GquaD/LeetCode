@@ -16,6 +16,7 @@ public class Problem65 {
         System.out.println(isNumber("+6e-1"));
         System.out.println(isNumber("53.5e93"));
         System.out.println(isNumber("-123.456e789"));
+        System.out.println(isNumber("+.8"));
         System.out.println("\n Not valid next\n");
         System.out.println(isNumber("abc"));
         System.out.println(isNumber("1a"));
@@ -28,10 +29,20 @@ public class Problem65 {
         System.out.println(isNumber(".."));
         System.out.println(isNumber(".e1"));
         System.out.println(isNumber("4e+"));
+        System.out.println(isNumber("+."));
 
     }
 
-    //1486 / 1490
+    //https://leetcode.com/problems/valid-number/solutions/3071699/java-ugly-3ms-solution/
+    //40 min
+    //Runtime
+    //3 ms
+    //Beats
+    //64.62%
+    //Memory
+    //43.3 MB
+    //Beats
+    //36.76%
     static boolean isNumber(String s) {
         if (s.length() == 1) return Character.isDigit(s.charAt(0));
         s = s.toLowerCase();
@@ -78,6 +89,7 @@ public class Problem65 {
             }
             if (arrOne.length < 1) return false;
             String oneOne = arrOne[0];
+            if (oneOne.length() == 1 && !Character.isDigit(oneOne.charAt(0)) && arrOne.length == 1) return false;
             for (int i = 1; i < oneOne.length(); i++) {
                 char c = oneOne.charAt(i);
                 if (!Character.isDigit(c)) return false;

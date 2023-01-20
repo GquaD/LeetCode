@@ -15,8 +15,7 @@ public class Problem491 {
         LeetCodeUtils.printListWithListsOfIntegers(findSubsequences(new int[]{4,4,3,2,1}));
     }
 
-    //https://leetcode.com/problems/non-decreasing-subsequences/solutions/3075741/java-recursive-solution/
-    //my sample
+    //https://leetcode.com/problems/non-decreasing-subsequences/solutions/3075741/java-recursive-backtracking-solution/
     //25 minutes
     //Runtime
     //16 ms

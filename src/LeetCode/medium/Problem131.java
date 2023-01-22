@@ -21,7 +21,16 @@ public class Problem131 {
         LeetCodeUtils.printListWithListsOfStrings(partition("abbab"));
     }
 
-    //Time limit exception on 31/32
+    //https://leetcode.com/problems/palindrome-partitioning/solutions/3085210/java-my-backtracking-solution/
+    //1 - 1.5 hour
+    //Runtime
+    //76 ms
+    //Beats
+    //5.4%
+    //Memory
+    //56.2 MB
+    //Beats
+    //44.38%
     static List<List<String>> partition(String s) {
         Set<List<String>> set = new HashSet<>();
         goRecursively(0, 1, s, new ArrayList<>(), set);
@@ -40,16 +49,11 @@ public class Problem131 {
         String temp = s.substring(start, Math.min(end, s.length()));
         if (isPalindrome(temp)) {
             list.add(temp);
-            for (int i = end; i <= s.length(); i++) {
-                //int size = list.size();
-                goRecursively(end, i + 1, s, list, set);
-                //list = list.subList(0, size);
-            }
+            goRecursively(end, end + 1, s, list, set);
             list.remove(list.size() - 1);
         }
-        if (!temp.isEmpty()){
-            goRecursively(start, end + 1, s, list, set);
-        }
+
+        goRecursively(start, end + 1, s, list, set);
     }
 
     private static int listLength(List<String> list) {

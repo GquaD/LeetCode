@@ -10,6 +10,7 @@ public class Problem921 {
         System.out.println(minAddToMakeValid("((()()("));
     }
 
+    //https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/solutions/3097799/java-stack-o-n-solution/
     //Runtime: 5 ms, faster than 5.80% of Java online submissions for Minimum Add to Make Parentheses Valid.
     //Memory Usage: 41.8 MB, less than 74.08% of Java online submissions for Minimum Add to Make Parentheses Valid.
     static int minAddToMakeValid(String s) {

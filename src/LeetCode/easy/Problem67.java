@@ -11,6 +11,14 @@ public class Problem67 {
         System.out.println(addBinary("110010", "10111"));
     }
 
+    //Runtime
+    //1 ms
+    //Beats
+    //100%
+    //Memory
+    //40.7 MB
+    //Beats
+    //94.5%
     //https://leetcode.com/problems/add-binary/solutions/2680563/java-straightforward-solution-o-n/
     //20-30 mins
     //Runtime

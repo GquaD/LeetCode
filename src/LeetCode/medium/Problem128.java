@@ -1,6 +1,8 @@
 package LeetCode.medium;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.TreeSet;
 
 public class Problem128 {
@@ -9,7 +11,30 @@ public class Problem128 {
 
     }
 
-    //15 min, but it's not O(N) solution
+    //nnnn O(N)
+    //Runtime
+    //36 ms
+    //Beats
+    //60.54%
+    //Memory
+    //72 MB
+    //Beats
+    //13.62%
+    static int longestConsecutive2(int[] nums) {
+        Set<Integer> set = new HashSet<>();
+        for (int n : nums) set.add(n);
+        int max = 0;
+        for (int n : set) {
+            if (set.contains(n + 1)) continue;
+            int count = 0;
+            while (set.contains(n - ++count));
+            max = Math.max(max, count);
+        }
+        return max;
+    }
+
+
+    //15 min, but it's O(N log N) and not O(N) solution
     //Runtime
     //80 ms
     //Beats

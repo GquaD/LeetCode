@@ -18,6 +18,26 @@ public class Problem121 {
 
     }
 
+    //https://leetcode.com/problems/best-time-to-buy-and-sell-stock/solutions/3227191/java-o-n-99-98-faster-solution/
+    //5 min
+    //Runtime
+    //1 ms
+    //Beats
+    //99.98%
+    //Memory
+    //59.2 MB
+    //Beats
+    //42.39%
+    public static int maxProfit(int[] prices) {
+        if (prices.length == 1) return 0;
+        int min = prices[0], maxDiff = 0;
+        for (int n : prices) {
+            min = Math.min(n, min);
+            maxDiff = Math.max(maxDiff, n - min);
+        }
+        return maxDiff;
+    }
+
     //time limit exceeded
     public static int maxProfit2(int[] prices) {
         if (prices.length <= 1) {

@@ -16,13 +16,13 @@ public class Problem11 {
     //https://leetcode.com/problems/container-with-most-water/solutions/2660581/java-solution-in-just-5-ms-with-image-and-explanation/
     //3 hours
     //Runtime
-    //5 ms
+    //2 ms
     //Beats
-    //68.63%
+    //99.24%
     //Memory
-    //81.2 MB
+    //52.5 MB
     //Beats
-    //35.98%
+    //63.13%
     static int maxArea(int[] height) {
 
         int a = 0, b = height.length - 1;

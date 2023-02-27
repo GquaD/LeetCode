@@ -3,14 +3,28 @@ package LeetCode.medium;
 public class Problem427 {
     //https://leetcode.com/problems/construct-quad-tree/
     public static void main(String[] args) {
-        Node node = construct(new int[][]{{0,1},{1,0}});
+        Node node1 = construct(new int[][]{{1,1,0,0},{0,0,1,1},{1,1,0,0},{0,0,1,1}});
+        System.out.println(node1);
+        Node node = construct(new int[][]{{1,1,1,1,0,0,0,0},{1,1,1,1,0,0,0,0},{1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1},{1,1,1,1,0,0,0,0},{1,1,1,1,0,0,0,0},{1,1,1,1,0,0,0,0},{1,1,1,1,0,0,0,0}});
         System.out.println(node);
+
     }
+
+    //https://leetcode.com/problems/construct-quad-tree/solutions/3235324/java-recursive-solution/
+    //1-1.5 hour
+    //Runtime
+    //1 ms
+    //Beats
+    //71.9%
+    //Memory
+    //43.3 MB
+    //Beats
+    //20.31%
 
     static Node construct(int[][] grid) {
         int rows = grid.length, cols = grid[0].length;
-        boolean containsBoth = containsBothZeroAndOne(0, rows, 0, cols, grid);
-        Node node = new Node(containsBoth, !containsBoth);
+        Node node = new Node();
+        boolean containsBoth = containsBothZeroAndOne(0, rows, 0, cols, node, grid);
         if (containsBoth) goRecursively(0, rows, 0, cols, node, grid);
         return node;
     }
@@ -18,37 +32,46 @@ public class Problem427 {
     private static void goRecursively(int rS, int rE, int cS, int cE, Node node, int[][] grid) {
         if (rS == rE || cS == cE) return;
 
-        if (rS == rE - 1 && cS == cE - 1) return; // todo
-
-        boolean containsBothTopLeft = containsBothZeroAndOne(rS, rE / 2, cS, cE / 2, grid);
-        Node nodeTopLeft = new Node(containsBothTopLeft, !containsBothTopLeft);
+        int rMid = (rE + rS) / 2, cMid = (cE + cS) / 2;
+        Node nodeTopLeft = new Node();
+        boolean containsBothTopLeft = containsBothZeroAndOne(rS, rMid, cS, cMid, nodeTopLeft, grid);
         node.topLeft = nodeTopLeft;
-        if (containsBothTopLeft) goRecursively(rS, rE / 2, cS, cS / 2, nodeTopLeft, grid);
+        if (containsBothTopLeft) goRecursively(rS, rMid, cS, cMid, nodeTopLeft, grid);
 
-        boolean containsBothTopRight = containsBothZeroAndOne(rS, rE / 2, cE / 2, cE, grid);
-        Node nodeTopRight = new Node(containsBothTopRight, !containsBothTopRight);
+        Node nodeTopRight = new Node();
+        boolean containsBothTopRight = containsBothZeroAndOne(rS, rMid, cMid, cE, nodeTopRight, grid);
         node.topRight = nodeTopRight;
-        if (containsBothTopRight) goRecursively(rS, rE / 2, cE / 2, cS, nodeTopRight, grid);
+        if (containsBothTopRight) goRecursively(rS, rMid, cMid, cE, nodeTopRight, grid);
 
-        boolean containsBothBottomLeft = containsBothZeroAndOne(rE / 2, rE, cS, cE / 2, grid);
-        Node nodeBottomLeft = new Node(containsBothBottomLeft, !containsBothBottomLeft);
+        Node nodeBottomLeft = new Node();
+        boolean containsBothBottomLeft = containsBothZeroAndOne(rMid, rE, cS, cMid, nodeBottomLeft, grid);
         node.bottomLeft = nodeBottomLeft;
-        if (containsBothBottomLeft) goRecursively(rE / 2, rE, cS, cS / 2, nodeTopLeft, grid);
+        if (containsBothBottomLeft) goRecursively(rMid, rE, cS, cMid, nodeBottomLeft, grid);
 
-        boolean containsBothBottomRight = containsBothZeroAndOne(rE / 2, rE, cE / 2, cE, grid);
-        Node nodeBottomRight = new Node(containsBothBottomRight, !containsBothBottomRight);
+        Node nodeBottomRight = new Node();
+        boolean containsBothBottomRight = containsBothZeroAndOne(rMid, rE, cMid, cE, nodeBottomRight, grid);
         node.bottomRight = nodeBottomRight;
-        if (containsBothBottomRight) goRecursively(rE / 2, rE, cE / 2, cE, nodeBottomRight, grid);
+        if (containsBothBottomRight) goRecursively(rMid, rE, cMid, cE, nodeBottomRight, grid);
     }
 
-    private static boolean containsBothZeroAndOne(int rS, int rE, int cS, int cE, int[][] grid) {
+    private static boolean containsBothZeroAndOne(int rS, int rE, int cS, int cE, Node node, int[][] grid) {
         boolean hasZero = false, hasOne = false;
+        node.isLeaf = true;
         for (int r = rS; r < rE ; r++) {
             for (int c = cS; c < cE; c++) {
-                if (grid[r][c] == 0) hasZero = true;
-                else hasOne = true;
+                if (grid[r][c] == 0) {
+                    hasZero = true;
+                    node.val = false;
+                } else {
+                    hasOne = true;
+                    node.val = true;
+                }
 
-                if (hasOne && hasZero) return true;
+                if (hasOne && hasZero) {
+                    node.val = true;
+                    node.isLeaf = false;
+                    return true;
+                }
             }
         }
         return false;

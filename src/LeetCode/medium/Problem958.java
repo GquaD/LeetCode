@@ -21,6 +21,7 @@ public class Problem958 {
     }
 
     //https://leetcode.com/problems/check-completeness-of-a-binary-tree/solutions/3298667/java-1-ms-dfs-solution/
+    //35-40 min
     //Runtime
     //1 ms
     //Beats

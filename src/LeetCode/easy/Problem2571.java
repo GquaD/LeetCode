@@ -15,7 +15,7 @@ public class Problem2571 {
         System.out.println(minOperations(54));
     }
 
-    //https://leetcode.com/problems/minimum-operations-to-reduce-an-integer-to-0/solutions/3310741/java-0ms-100-faster-solution/
+    //https://leetcode.com/problems/minimum-operations-to-reduce-an-integer-to-0/solutions/3310741/java-0ms-o-k-logn-100-faster-solution/
     //30 min
     //Runtime
     //0 ms

@@ -51,13 +51,13 @@ public class Problem2316 {
 
     //my solution based on solution for https://leetcode.com/problems/number-of-operations-to-make-network-connected/
     //Runtime
-    //1294 ms
+    //68 ms
     //Beats
-    //5.37%
+    //42.15%
     //Memory
-    //125.4 MB
+    //113.2 MB
     //Beats
-    //28.74%
+    //54.41%
     static long countPairs1(int n, int[][] edges) {
         if (edges.length == 0) {
             return ((1L + (n - 1L)) * (n - 1L)) / 2L;
@@ -69,7 +69,7 @@ public class Problem2316 {
             listAdj.get(conn[1]).add(conn[0]);
         }
         boolean[] visited = new boolean[n];
-        int groups = 0;
+        int groups = 0, sum = n;
         Map<Integer, Integer> mapNodesNumber = new HashMap<>();
         long res = 0;
         for (int i = 0; i < n; i++) {
@@ -77,26 +77,21 @@ public class Problem2316 {
                 mapNodesNumber.put(groups, 0);
                 goDFS(listAdj, i, visited, mapNodesNumber, groups);
                 int count = mapNodesNumber.get(groups);
-
+                sum -= count;
+                res += (long) sum * count;
                 groups++;
-            }
-        }
-        ArrayList<Integer> amounts = new ArrayList<>(mapNodesNumber.values());
-        for (int i = 0; i < amounts.size() - 1; i++) {
-            for (int j = i + 1; j < amounts.size(); j++) {
-                res += 1L * amounts.get(i) * amounts.get(j);
             }
         }
         return res;
     }
 
-    private static void goDFS(List<List<Integer>> listAdj, int computer, boolean[] visited, Map<Integer, Integer> mapNodesNumber, int group) {
-        if (visited[computer]) return;
-        visited[computer] = true;
+    private static void goDFS(List<List<Integer>> listAdj, int c, boolean[] visited, Map<Integer, Integer> mapNodesNumber, int group) {
+        if (visited[c]) return;
+        visited[c] = true;
 
         mapNodesNumber.put(group, mapNodesNumber.get(group) + 1);
 
-        for (int pc : listAdj.get(computer)) {
+        for (int pc : listAdj.get(c)) {
             goDFS(listAdj, pc, visited, mapNodesNumber, group);
         }
     }

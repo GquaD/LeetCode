@@ -10,6 +10,7 @@ public class Problem1944 {
         System.out.println(Arrays.toString(canSeePersonsCount(new int[]{1})));
     }
 
+    //todo
     //nnn
     //Runtime
     //150 ms

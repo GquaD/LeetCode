@@ -5,13 +5,14 @@ import java.util.*;
 public class Problem1857 {
     //https://leetcode.com/problems/largest-color-value-in-a-directed-graph/
     public static void main(String[] args) {
+        System.out.println(largestPathValue("iivvvvv", new int[][]{{0,1},{1,2},{1,3},{2,3},{3,4},{2,4},{3,5},{1,5},{4,5},{5,6}}));
         System.out.println(largestPathValue("abaca", new int[][]{{0,1},{0,2},{2,3},{3,4}}));
         System.out.println(largestPathValue("bbbhb", new int[][]{{0,2},{3,0},{1,3},{4,1}}));
         System.out.println(largestPathValue("g", new int[0][0]));
-        System.out.println(largestPathValue("iivvvvv", new int[][]{{0,1},{1,2},{1,3},{2,3},{3,4},{2,4},{3,5},{1,5},{4,5},{5,6}}));
         System.out.println(largestPathValue("a", new int[][]{{0,0}}));
     }
 
+    //nnn
     //Runtime
     //96 ms
     //Beats
@@ -28,13 +29,13 @@ public class Problem1857 {
             listAlph.add(new ArrayList<>());
             count.add(new int[26]);
         }
-        int[] nodesNum = new int[n];
+        int[] incomingNodesNum = new int[n];
         for (int[] edge : edges) {
             listAlph.get(edge[0]).add(edge[1]);
-            nodesNum[edge[1]]++;
+            incomingNodesNum[edge[1]]++;
         }
         List<Integer> queue = new ArrayList<>();
-        for (int i = 0; i < n; i++) if (nodesNum[i] == 0) queue.add(i);
+        for (int i = 0; i < n; i++) if (incomingNodesNum[i] == 0) queue.add(i);
         int result = 0, numProcessed = 0;
         while (!queue.isEmpty()) {
             List<Integer> queueTemp = new ArrayList<>();
@@ -45,7 +46,7 @@ public class Problem1857 {
                     for (int k = 0; k < 26; k++) {
                         count.get(j)[k] = Math.max(count.get(j)[k], count.get(i)[k]);
                     }
-                    if (--nodesNum[j] == 0) queueTemp.add(j);
+                    if (--incomingNodesNum[j] == 0) queueTemp.add(j);
                 }
             }
             queue = queueTemp;

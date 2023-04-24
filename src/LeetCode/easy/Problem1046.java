@@ -10,6 +10,7 @@ public class Problem1046 {
         System.out.println(lastStoneWeight(new int[]{1}));
     }
     //10 mins
+
     //Runtime: 1 ms, faster than 99.71% of Java online submissions for Last Stone Weight.
     //Memory Usage: 41.1 MB, less than 81.02% of Java online submissions for Last Stone Weight.
     static int lastStoneWeight(int[] stones) {

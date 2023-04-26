@@ -10,13 +10,13 @@ public class Problem258 {
     //https://leetcode.com/problems/add-digits/solutions/2813090/java-in-2-ms/
     //5 mins
     //Runtime
-    //2 ms
+    //1 ms
     //Beats
-    //81.61%
+    //100%
     //Memory
-    //41.7 MB
+    //40.1 MB
     //Beats
-    //20.11%
+    //33.19%
     static int addDigits(int num) {
         while (num > 9) {
             int t = num, sum = 0;

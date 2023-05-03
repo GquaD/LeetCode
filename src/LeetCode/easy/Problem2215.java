@@ -6,14 +6,20 @@ import java.util.List;
 import java.util.Set;
 
 public class Problem2215 {
-    //
+    //https://leetcode.com/problems/find-the-difference-of-two-arrays/description/
     public static void main(String[] args) {
         findDifference(new int[]{1,2,3}, new int[]{2,4,6});
         findDifference(new int[]{1,2,3,3}, new int[]{1,1,2,2});
     }
 
-    //Runtime: 21 ms, faster than 61.63% of Java online submissions for Find the Difference of Two Arrays.
-    //Memory Usage: 54.7 MB, less than 58.80% of Java online submissions for Find the Difference of Two Arrays.
+    //Runtime
+    //11 ms
+    //Beats
+    //86.46%
+    //Memory
+    //43.5 MB
+    //Beats
+    //29.55%
     static List<List<Integer>> findDifference(int[] nums1, int[] nums2) {
         Set<Integer> set1 = new HashSet<>();
         for (int i = 0; i < nums1.length; i++) {

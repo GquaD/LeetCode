@@ -9,6 +9,42 @@ public class Problem2653 {
         System.out.println(Arrays.toString(getSubarrayBeauty(new int[]{1,-1,-3,-2,3}, 3, 3)));
     }
 
+    //Runtime
+    //38 ms
+    //Beats
+    //88.20%
+    //Memory
+    //59.5 MB
+    //Beats
+    //60.2%
+    static int[] getSubarrayBeauty(int[] nums, int k, int x) {
+        int[] res = new int[nums.length - k + 1], counter = new int[50];
+        int c = 0, count;
+        for (int i = 0; i < k; i++) if (nums[i] < 0) counter[nums[i] + 50]++;
+        count = 0;
+        for (int i = 0; i < 50; i++) {
+            count += counter[i];
+            if (count >= x) {
+                res[c] = i - 50;
+                break;
+            }
+        }
+        for (int i = k; i < nums.length; i++) {
+            if (nums[c] < 0) counter[nums[c] + 50]--;
+            c++;
+            count = 0;
+            if (nums[i] < 0) counter[nums[i] + 50]++;
+            for (int j = 0; j < 50; j++) {
+                count += counter[j];
+                if (count >= x) {
+                    res[c] = j - 50;
+                    break;
+                }
+            }
+        }
+        return res;
+    }
+
     //https://leetcode.com/problems/sliding-subarray-beauty/solutions/3538695/java-treemap-slow-solution/
     //50 min
     //Runtime
@@ -19,7 +55,7 @@ public class Problem2653 {
     //62.2 MB
     //Beats
     //10.77%
-    static int[] getSubarrayBeauty(int[] nums, int k, int x) {
+    static int[] getSubarrayBeauty3(int[] nums, int k, int x) {
         TreeMap<Integer, Integer> map = new TreeMap<>();
         for (int i = 0; i < k; i++) {
             if (map.containsKey(nums[i])) map.put(nums[i], map.get(nums[i]) + 1);

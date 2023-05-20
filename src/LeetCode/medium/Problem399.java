@@ -39,6 +39,7 @@ public class Problem399 {
         System.out.println(Arrays.toString(calcEquation(equations, values, queries)));
     }
 
+    //https://leetcode.com/problems/evaluate-division/solutions/3544921/java-using-map-of-maps-and-dfs/
     //35-40 min
     //Runtime
     //1 ms

@@ -1,5 +1,6 @@
 package LeetCode.medium;
 
+import java.util.Arrays;
 import java.util.PriorityQueue;
 
 public class Problem2542 {
@@ -8,8 +9,33 @@ public class Problem2542 {
         System.out.println(maxScore(new int[]{1,3,3,2}, new int[]{2,1,3,4}, 3));
     }
 
-    //wrong
+    //nnnn
+    //Runtime
+    //107 ms
+    //Beats
+    //27.42%
+    //Memory
+    //60.8 MB
+    //Beats
+    //43.1%
     static long maxScore(int[] nums1, int[] nums2, int k) {
+        int len = nums1.length;
+        int[][] table = new int[len][2];
+        for (int i = 0; i < len; i++) table[i] = new int[] {nums2[i], nums1[i]};
+        Arrays.sort(table, (a, b) -> b[0] - a[0]);
+        PriorityQueue<Integer> pq = new PriorityQueue<>(k, (a, b) -> a - b);
+        long res = 0, sum = 0;
+        for (int[] pair : table) {
+            pq.add(pair[1]);
+            sum += pair[1];
+            if (pq.size() > k) sum -= pq.poll();
+            if (pq.size() == k) res = Math.max(res, sum * pair[0]);
+        }
+        return res;
+    }
+
+    //wrong
+    static long maxScore2(int[] nums1, int[] nums2, int k) {
         if (k == 1) {
             long max = 0;
             for (int i = 0; i < nums1.length; i++) max = Math.max(max, 1L * nums1[i] * nums2[i]);

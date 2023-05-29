@@ -13,16 +13,17 @@ public class Problem202 {
 
     //https://leetcode.com/problems/happy-number/solutions/2799159/java-solution-using-map/
     //Runtime
-    //3 ms
+    //1 ms
     //Beats
-    //55.19%
+    //88.80%
     //Memory
-    //41.5 MB
+    //39.9 MB
     //Beats
-    //33.92%
-    static Map<Integer, Integer> map = new HashMap<>();
+    //43.39%
+
     static boolean isHappy(int n) {
-        int sum = 0, temp = n, lastKey = -1;
+        Map<Integer, Integer> map = new HashMap<>();
+        int sum = 0, temp = n;
         while (!map.containsKey(sum)) {
             sum = 0;
             int meme = temp;
@@ -32,11 +33,9 @@ public class Problem202 {
                 sum += digit * digit;
             }
             if (sum == 1) {
-                map.remove(lastKey);
                 return true;
             }
             map.put(meme, sum);
-            lastKey = meme;
             temp = sum;
         }
         return false;

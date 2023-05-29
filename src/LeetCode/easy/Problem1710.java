@@ -30,9 +30,32 @@ public class Problem1710 {
         }, 10));
     }
 
+    //Runtime
+    //9 ms
+    //Beats
+    //94.74%
+    //Memory
+    //44.5 MB
+    //Beats
+    //6.6%
+    static int maximumUnits(int[][] boxTypes, int truckSize) {
+        Arrays.sort(boxTypes, (o1, o2) -> o2[1] == o1[1] ? o2[0] - o1[0] : o2[1] - o1[1]);
+        int count = 0;
+        for (int i = 0; i < boxTypes.length; i++) {
+            if (truckSize - boxTypes[i][0] >= 0) {
+                truckSize -= boxTypes[i][0];
+                count += boxTypes[i][0] * boxTypes[i][1];
+            } else {
+                count += truckSize * boxTypes[i][1];
+                break;
+            }
+        }
+        return count;
+    }
+
     //Runtime: 19 ms, faster than 19.08% of Java online submissions for Maximum Units on a Truck.
     //Memory Usage: 52.5 MB, less than 5.53% of Java online submissions for Maximum Units on a Truck.
-    static int maximumUnits(int[][] boxTypes, int truckSize) {
+    static int maximumUnits2(int[][] boxTypes, int truckSize) {
         List<PairMy> list = new ArrayList<>();
         for (int i = 0; i < boxTypes.length; i++) {
             PairMy pair = new PairMy(boxTypes[i][0], boxTypes[i][1]);

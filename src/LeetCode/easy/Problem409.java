@@ -14,9 +14,35 @@ public class Problem409 {
         System.out.println(longestPalindrome("ababababa"));
     }
 
+    //Runtime
+    //3 ms
+    //Beats
+    //70.71%
+    //Memory
+    //40.9 MB
+    //Beats
+    //64.15%
+    public static int longestPalindrome(String s) {
+        int alphLow[] = new int[26], alphUp[] = new int[26], count = 0, hasOdd = 0;
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (Character.isLowerCase(c)) alphLow[c - 'a']++;
+            else alphUp[c - 'A']++;
+        }
+        for (int n : alphLow) {
+            count += n % 2 == 0 ? n : n - 1;
+            if (n % 2 == 1) hasOdd++;
+        }
+        for (int n : alphUp) {
+            count += n % 2 == 0 ? n : n - 1;
+            if (n % 2 == 1) hasOdd++;
+        }
+        return hasOdd > 0 ? count + 1 : count;
+    }
+
     //Runtime: 7 ms, faster than 44.71% of Java online submissions for Longest Palindrome.
     //Memory Usage: 40.4 MB, less than 95.18% of Java online submissions for Longest Palindrome.
-    public static int longestPalindrome(String s) {
+    public static int longestPalindrome1(String s) {
         Map<Character, Integer> map = new HashMap<>();
         for (int i = 0; i < s.length(); i++) {
             if (map.containsKey(s.charAt(i))) {

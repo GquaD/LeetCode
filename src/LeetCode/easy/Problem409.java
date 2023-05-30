@@ -14,6 +14,7 @@ public class Problem409 {
         System.out.println(longestPalindrome("ababababa"));
     }
 
+    //5-10min
     //Runtime
     //3 ms
     //Beats

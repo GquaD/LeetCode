@@ -12,7 +12,8 @@ public class Problem676 {
     }
 
 }
-
+//10 min
+//https://leetcode.com/problems/implement-magic-dictionary/solutions/3580361/java-straightforward-solution/
 //Runtime
 //35 ms
 //Beats

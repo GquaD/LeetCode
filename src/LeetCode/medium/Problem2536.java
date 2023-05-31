@@ -9,6 +9,7 @@ public class Problem2536 {
         LeetCodeUtils.print2DArray(rangeAddQueries(3, new int[][]{{1,1,2,2}, {0,0,1,1}}));
     }
 
+    //https://leetcode.com/problems/increment-submatrices-by-one/solutions/3583266/java-3-line-brute-force-solution/
     //3 min
     //Runtime
     //514 ms

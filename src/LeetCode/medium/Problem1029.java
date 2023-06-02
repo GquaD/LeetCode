@@ -9,7 +9,7 @@ public class Problem1029 {
         System.out.println(twoCitySchedCost(new int[][]{{259, 770}, {448, 54}, {926, 667}, {184, 139}, {840, 118}, {577, 469}}));
     }
 
-    //https://leetcode.com/problems/two-city-scheduling/solutions/3590426/java-o-nlogn-solution/
+    //https://leetcode.com/problems/two-city-scheduling/solutions/3590426/java-4-line-o-nlogn-solution/
     //read the explanation half nnnn
     //Runtime
     //2 ms

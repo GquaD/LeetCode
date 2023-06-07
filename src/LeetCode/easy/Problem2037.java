@@ -12,6 +12,7 @@ public class Problem2037 {
 
     //Runtime: 4 ms, faster than 73.17% of Java online submissions for Minimum Number of Moves to Seat Everyone.
     //Memory Usage: 45.2 MB, less than 7.12% of Java online submissions for Minimum Number of Moves to Seat Everyone.
+
     static int minMovesToSeat(int[] seats, int[] students) {
         Arrays.sort(seats);
         Arrays.sort(students);

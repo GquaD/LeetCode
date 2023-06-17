@@ -11,7 +11,7 @@ public class Problem1481 {
         System.out.println(findLeastNumOfUniqueInts(new int[]{5,5,4}, 1));
     }
 
-    //https://leetcode.com/problems/least-number-of-unique-integers-after-k-removals/solutions/3646924/java-o-n-solution-using-map-and-priorityqueue/
+    //https://leetcode.com/problems/least-number-of-unique-integers-after-k-removals/solutions/3646924/java-o-n-6-line-solution-using-map-and-priorityqueue/
     //Runtime
     //66 ms
     //Beats

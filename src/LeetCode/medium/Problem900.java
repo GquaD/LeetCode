@@ -20,8 +20,45 @@ public class Problem900 {
 
 }
 
-//https://leetcode.com/problems/rle-iterator/solutions/3769624/java-using-linkedlist/
+//https://leetcode.com/problems/rle-iterator/solutions/3769655/java-using-index-count/
 //20-25 min
+//Runtime
+//Details
+//5ms
+//Beats 96.98%of users with Java
+//Memory
+//Details
+//41.93mb
+//Beats 40.20%of users with Java
+class RLEIterator {
+
+    int idx;
+    int[] arr;
+    public RLEIterator(int[] encoding) {
+        idx = 0;
+        arr = encoding;
+    }
+
+    public int next(int n) {
+        while (n > 0) {
+            if (idx >= arr.length) return -1;
+            int times = arr[idx];
+            if (n < times) {
+                arr[idx] -= n;
+                return arr[idx + 1];
+            } else if (n == times) {
+                idx += 2;
+                return arr[idx - 1];
+            } else {
+                n -= times;
+                idx += 2;
+            }
+        }
+        return -1;
+    }
+}
+
+////https://leetcode.com/problems/rle-iterator/solutions/3769624/java-using-linkedlist/
 //Runtime
 //Details
 //6ms
@@ -30,11 +67,12 @@ public class Problem900 {
 //Details
 //42.36mb
 //Beats 7.54%of users with Java
-class RLEIterator {
+class RLEIterator2 {
 
     int idx;
     LinkedList<Pair<Integer, Integer>> list;
-    public RLEIterator(int[] encoding) {
+
+    public RLEIterator2(int[] encoding) {
        idx = -1;
        list = new LinkedList<>();
         for (int i = 0; i < encoding.length; i+= 2)
@@ -43,7 +81,6 @@ class RLEIterator {
 
 
     }
-
     public int next(int n) {
         if (list.size() == 0) return -1;
         while (n > 0) {
@@ -61,7 +98,9 @@ class RLEIterator {
         }
         return -1;
     }
+
 }
+
 
 //Memory Limit Exceeded
 //4 / 11

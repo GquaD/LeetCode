@@ -1,4 +1,4 @@
-package LeetCode.easy;
+package LeetCode.medium;
 
 import LeetCode.LeetCodeUtils;
 

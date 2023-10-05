@@ -32,6 +32,7 @@ public class Problem2018 {
     }
 
 
+    //check github
     //https://leetcode.com/problems/check-if-word-can-be-placed-in-crossword/solutions/4133652/java-straightforward-solution/
     //50min
     //Runtime

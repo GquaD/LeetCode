@@ -12,6 +12,30 @@ public class Problem539 {
         System.out.println(findMinDifference(Arrays.asList("00:00","23:59","00:00")));
     }
 
+    ////https://leetcode.com/problems/minimum-time-difference/solutions/4176757/java-o-nlogn-solution/
+    //Runtime
+    //12 ms
+    //Beats
+    //44.26%
+    //Memory
+    //45.8 MB
+    //Beats
+    //5.57%
+    static int findMinDifference(List<String> timePoints) {
+        List<Integer> list = new ArrayList<>();
+        for (String s : timePoints) {
+            String[] sp = s.split(":");
+            list.add(Integer.parseInt(sp[0]) * 60 + Integer.parseInt(sp[1]));
+        }
+        Collections.sort(list);
+        int min = 24 * 60;
+        for (int i = 1; i < list.size(); i++) {
+            min = Math.min(min, list.get(i) - list.get(i - 1));
+        }
+        min = Math.min(min, (24 * 60 - list.get(list.size() - 1)) + list.get(0));
+        return min;
+    }
+
     //https://leetcode.com/problems/minimum-time-difference/solutions/4176757/java-o-nlogn-solution/
     //10min
     //Runtime
@@ -22,7 +46,7 @@ public class Problem539 {
     //44.2 MB
     //Beats
     //50.17%
-    static int findMinDifference(List<String> timePoints) {
+    static int findMinDifference3(List<String> timePoints) {
         List<Integer> list = new ArrayList<>();
         for (String s : timePoints) {
             list.add(Integer.parseInt(s.charAt(0) + "" + s.charAt(1))

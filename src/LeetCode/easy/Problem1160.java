@@ -10,9 +10,36 @@ public class Problem1160 {
         System.out.println(countCharacters(new String[]{"hello", "world", "leetcode"}, "welldonehoneyr"));
     }
 
+    //5min
+    //Runtime
+    //8 ms
+    //Beats
+    //65.56%
+    //Memory
+    //44.1 MB
+    //Beats
+    //56.30%
+    static int countCharacters(String[] words, String chars) {
+        int count = 0, alph[] = new int[26];
+        for (int i = 0; i < chars.length(); i++) alph[chars.charAt(i) - 'a']++;
+        for (String word : words) {
+            int[] alph1 = new int[26];
+            for (int i = 0; i < word.length(); i++) alph1[word.charAt(i) - 'a']++;
+            boolean isGood = true;
+            for (int i = 0; i < 26; i++) {
+                if (alph1[i] > alph[i]) {
+                    isGood = false;
+                    break;
+                }
+            }
+            if (isGood) count += word.length();
+        }
+        return count;
+    }
+
     //Runtime: 53 ms, faster than 34.71% of Java online submissions for Find Words That Can Be Formed by Characters.
     //Memory Usage: 61.5 MB, less than 23.55% of Java online submissions for Find Words That Can Be Formed by Characters.
-    static int countCharacters(String[] words, String chars) {
+    static int countCharacters1(String[] words, String chars) {
         Map<Character, Integer> map = new HashMap<>();
         for (int i = 0; i < chars.length(); i++) {
             char key = chars.charAt(i);

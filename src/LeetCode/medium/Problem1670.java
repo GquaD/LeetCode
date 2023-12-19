@@ -2,7 +2,7 @@ package LeetCode.medium;
 
 import java.util.ArrayList;
 
-public class Problem1679 {
+public class Problem1670 {
     //https://leetcode.com/problems/design-front-middle-back-queue/
     public static void main(String[] args) {
 

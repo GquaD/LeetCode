@@ -1,8 +1,6 @@
 package LeetCode.easy;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Problem645 {
     //https://leetcode.com/problems/set-mismatch/description/
@@ -10,8 +8,36 @@ public class Problem645 {
         System.out.println(Arrays.toString(findErrorNums(new int[]{3,2,3,4,6,5})));
     }
 
-
+    //10min
+    //Runtime
+    //19
+    //ms
+    //Beats
+    //6.86%
+    //of users with Java
+    //Memory
+    //45.85
+    //MB
+    //Beats
+    //11.88%
+    //of users with Java
     static int[] findErrorNums(int[] nums) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 1; i <= nums.length; i++) {
+            map.put(i, 0);
+        }
+        for (int n : nums) {
+            map.put(n, map.getOrDefault(n, 0) + 1);
+        }
+        int[] res = new int[2];
+        for (int k : map.keySet()) {
+            int f = map.get(k);
+            if (f == 2) res[0] = k;
+            else if (f == 0) res[1] = k;
+        }
+        return res;
+    }
+    static int[] findErrorNums2(int[] nums) {
         Arrays.sort(nums);
         for (int i = 1; i < nums.length; i++) {
             if (nums[i] == nums[i - 1]) {

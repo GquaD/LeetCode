@@ -14,6 +14,19 @@ public class Problem523 {
         System.out.println(checkSubarraySum(new int[]{0, 0}, 1));
     }
 
+    //nnn
+    //Runtime
+    //25
+    //ms
+    //Beats
+    //34.97%
+    //of users with Java
+    //Memory
+    //62.10
+    //MB
+    //Beats
+    //18.26%
+    //of users with Java
     static boolean checkSubarraySum(int[] nums, int k) {
         if (nums.length == 1) return false;
         int sum = 0;

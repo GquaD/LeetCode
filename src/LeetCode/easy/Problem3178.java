@@ -5,8 +5,6 @@ public class Problem3178 {
     public static void main(String[] args) {
 
     }
-
-
     //5min
     //Runtime
     //0

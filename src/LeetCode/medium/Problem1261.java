@@ -8,6 +8,41 @@ public class Problem1261 {
 
     }
 
+    //https://leetcode.com/problems/find-elements-in-a-contaminated-binary-tree/solutions/6451078/java-99-faster-solution-by-tbekpro-ngpg/
+    //3min
+    //Runtime
+    //20
+    //ms
+    //Beats
+    //98.92%
+    //Analyze Complexity
+    //Memory
+    //47.35
+    //MB
+    //Beats
+    //67.12%
+//    class FindElements {
+//    Set<Integer> set;
+//    public FindElements(TreeNode root) {
+//        set = new HashSet<>();
+//        goDFS(root, 0, set);
+//    }
+//
+//    public boolean find(int target) {
+//        return set.contains(target);
+//    }
+//
+//    private void goDFS (TreeNode node, int val, Set<Integer> set) {
+//        if (node == null) return;
+//
+//        node.val = val;
+//        set.add(val);
+//
+//        goDFS(node.left, val * 2 + 1, set);
+//        goDFS(node.right, val * 2 + 2, set);
+//    }
+//}
+
     //BEST result so far
     //Runtime: 48 ms, faster than 34.44% of Java online submissions for Find Elements in a Contaminated Binary Tree.
     //Memory Usage: 57 MB, less than 21.33% of Java online submissions for Find Elements in a Contaminated Binary Tree.
@@ -163,7 +198,7 @@ public class Problem1261 {
         List<Integer> list;
 
         public FindElements1(TreeNode root) {
-            list = new LinkedList<>();
+            list = (List<Integer>) new LinkedList1<>();
             recover(root, 0);
         }
 

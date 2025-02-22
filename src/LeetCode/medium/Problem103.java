@@ -8,6 +8,49 @@ public class Problem103 {
 
     }
 
+
+    //5min
+    //Runtime
+    //0
+    //ms
+    //Beats
+    //100.00%
+    //Analyze Complexity
+    //Memory
+    //42.46
+    //MB
+    //Beats
+    //23.95%
+    public List<List<Integer>> zigzagLevelOrder3(TreeNode root) {
+        List<List<Integer>> list = new ArrayList<>();
+        goDFS(root, list, 0);
+        for (int i = 0; i < list.size(); i++) {
+            if (i % 2 == 1) {
+                list.set(i, reverseList(list.get(i)));
+            }
+        }
+        return list;
+    }
+
+    private void goDFS(TreeNode node, List<List<Integer>> list, int level) {
+        if (node == null) return;
+
+        if (level + 1 > list.size()) {
+            list.add(new ArrayList<>());
+        }
+        list.get(level).add(node.val);
+        goDFS(node.left, list, level + 1);
+        goDFS(node.right, list, level + 1);
+    }
+
+    private List<Integer> reverseList(List<Integer> list) {
+        List<Integer> temp = new ArrayList<>();
+        for(int i = list.size() - 1; i >= 0; i--) {
+            temp.add(list.get(i));
+        }
+        return temp;
+    }
+
     //https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/solutions/3088870/java-3-solutions-from-4ms-to-1ms-o-n/?orderBy=most_votes
     //5 min
     //Runtime

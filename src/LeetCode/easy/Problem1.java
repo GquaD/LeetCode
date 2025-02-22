@@ -13,6 +13,45 @@ public class Problem1 {
         System.out.println(Arrays.toString(twoSum(new int[]{2, 4, 2, 90}, 4)));
     }
 
+    //10min
+    //Runtime
+    //7
+    //ms
+    //Beats
+    //52.02%
+    //Analyze Complexity
+    //Memory
+    //46.56
+    //MB
+    //Beats
+    //9.63%
+    public int[] twoSum45(int[] nums, int target) {
+        Map<Integer, List<Integer>> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            List<Integer> list = map.get(nums[i]);
+            if (list == null) {
+                list = new ArrayList<>();
+                map.put(nums[i], list);
+            }
+            list.add(i);
+        }
+
+        for (int i = 0; i < nums.length; i++) {
+            int num = nums[i], diff = target - num;
+            List<Integer> list = map.get(diff);
+            if (list != null) {
+                if (diff == num) {
+                    if (list.size() > 1) {
+                        return new int[] { list.get(0), list.get(1) };
+                    }
+                } else {
+                    return new int[] { i, list.get(0) };
+                }
+            }
+        }
+        return new int[2];
+    }
+
     //Runtime
     //7 ms
     //Beats

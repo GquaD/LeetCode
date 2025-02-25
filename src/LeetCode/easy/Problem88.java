@@ -32,6 +32,37 @@ public class Problem88 {
     }
 
 
+    //5min
+    //3 end pointers
+    //Runtime
+    //0
+    //ms
+    //Beats
+    //100.00%
+    //Analyze Complexity
+    //Memory
+    //42.26
+    //MB
+    //Beats
+    //59.34%
+    public void merge9(int[] nums1, int m, int[] nums2, int n) {
+        //back pointers
+
+        int i = m - 1, j = n - 1, k = m + n - 1;
+        while (k >= 0) {
+            int a = i < 0 ? Integer.MIN_VALUE : nums1[i], b = j < 0 ? Integer.MIN_VALUE : nums2[j];
+            if (a >= b) {
+                nums1[k] = a;
+                i--;
+            } else {
+                nums1[k] = b;
+                j--;
+            }
+            k--;
+        }
+    }
+
+
     //1min
     //Runtime
     //1

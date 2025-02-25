@@ -31,6 +31,26 @@ public class Problem88 {
         System.out.println("///////////");
     }
 
+
+    //1min
+    //Runtime
+    //1
+    //ms
+    //Beats
+    //30.14%
+    //Analyze Complexity
+    //Memory
+    //42.18
+    //MB
+    //Beats
+    //76.61%
+    public void merge8(int[] nums1, int m, int[] nums2, int n) {
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        for (int i = 0; i < m; i++) pq.offer(nums1[i]);
+        for (int j = 0; j < n; j++) pq.offer(nums2[j]);
+        for (int i = 0; i < m + n; i++) nums1[i] = pq.poll();
+    }
+
     //https://leetcode.com/problems/merge-sorted-array/solutions/2699096/java-4-different-solutions-from-6-to-100-faster/
     //Runtime
     //0 ms

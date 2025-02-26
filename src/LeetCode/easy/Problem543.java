@@ -16,6 +16,32 @@ public class Problem543 {
         System.out.println(res);
     }
 
+    //5min
+    //Runtime
+    //0
+    //ms
+    //Beats
+    //100.00%
+    //Analyze Complexity
+    //Memory
+    //44.67
+    //MB
+    //Beats
+    //73.14%
+    public int diameterOfBinaryTree3(TreeNode root) {
+        int[] result = new int[1];
+        traverseDFS(root, result);
+        return result[0];
+    }
+
+    private int traverseDFS(TreeNode node, int[] result) {
+        if (node == null) return 0;
+
+        int left = traverseDFS(node.left, result), right = traverseDFS(node.right, result);
+        result[0] = Math.max(result[0], left + right);
+        return Math.max(left, right) + 1;
+    }
+
     //https://leetcode.com/problems/diameter-of-binary-tree/solutions/4789796/java-dfs-100-faster/
     //20 min
     //Runtime

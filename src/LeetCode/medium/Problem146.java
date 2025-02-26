@@ -5,6 +5,49 @@ import java.util.*;
 public class Problem146 {
     //https://leetcode.com/problems/lru-cache/description/
 
+    //10min
+    //Runtime
+    //49
+    //ms
+    //Beats
+    //41.14%
+    //Analyze Complexity
+    //Memory
+    //129.26
+    //MB
+    //Beats
+    //7.65%
+
+//    class LRUCache {
+//
+//    LinkedHashMap<Integer, Integer> map;
+//    int size;
+//
+//    public LRUCache(int capacity) {
+//        size = capacity;
+//        map = new LinkedHashMap<>();
+//    }
+//
+//    public int get(int key) {
+//        Integer result = map.get(key);
+//        if (result == null) return -1;
+//        map.remove(key);
+//        map.put(key, result);
+//        return result;
+//    }
+//
+//    public void put(int key, int value) {
+//        map.remove(key);
+//        map.put(key, value);
+//        if (map.size() > size) {
+//            for (int k: map.keySet()) {
+//                map.remove(k);
+//                break;
+//            }
+//        }
+//    }
+//}
+
     //15-20 min
     //Runtime
     //77 ms

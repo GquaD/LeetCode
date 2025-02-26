@@ -10,6 +10,41 @@ public class Problem125 {
         System.out.println(isPalindrome("0P"));
     }
 
+    //5min
+    //Runtime
+    //3
+    //ms
+    //Beats
+    //74.88%
+    //Analyze Complexity
+    //Memory
+    //43.37
+    //MB
+    //Beats
+    //62.57%
+    public boolean isPalindrome3(String s) {
+        int diff = 'A' - 'a';
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (c >= 'A' && c <= 'Z') {
+                sb.append((char) ('a' + (c - 'A')));
+            } else if (c >= 'a' && c <= 'z' || c >= '0' && c <= '9') {
+                sb.append(c);
+            }
+        }
+        return isPalindromic(sb.toString());
+    }
+
+    private boolean isPalindromic(String s) {
+        for (int i = 0; i < s.length() / 2; i++) {
+            if (s.charAt(i) != s.charAt(s.length() - i - 1)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     //https://leetcode.com/problems/valid-palindrome/solutions/2758774/java-o-n-100-faster-solution/
     //Runtime
     //2 ms

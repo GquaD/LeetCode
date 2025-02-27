@@ -11,6 +11,38 @@ public class Problem1570 {
 
 //5min
 //Runtime
+//8
+//ms
+//Beats
+//79.58%
+//Analyze Complexity
+//Memory
+//59.00
+//MB
+//Beats
+//13.66%
+//class SparseVector {
+//    Map<Integer, Integer> map;
+//    SparseVector(int[] nums) {
+//        map = new HashMap<>();
+//        for (int i = 0; i < nums.length; i++) {
+//            if (nums[i] != 0) map.put(i, nums[i]);
+//        }
+//    }
+//
+//    public int dotProduct(SparseVector vec) {
+//        int result = 0;
+//        for (Integer idx: map.keySet()) {
+//            if (vec.map.containsKey(idx)) {
+//                result += map.get(idx) * vec.map.get(idx);
+//            }
+//        }
+//        return result;
+//    }
+//}
+
+//5min
+//Runtime
 //2
 //ms
 //Beats

@@ -11,6 +11,27 @@ public class Problem215 {
         System.out.println(findKthLargest(new int[]{3,1,2,5,5,6,4}, 3));
     }
 
+    //1min
+    //Runtime
+    //62
+    //ms
+    //Beats
+    //42.53%
+    //Analyze Complexity
+    //Memory
+    //62.01
+    //MB
+    //Beats
+    //7.31%
+    //public int findKthLargest(int[] nums, int k) {
+    //        PriorityQueue<Integer> pq = new PriorityQueue<>();
+    //        for (int n: nums) {
+    //            pq.offer(n);
+    //            if (pq.size() > k) pq.poll();
+    //        }
+    //        return pq.poll();
+    //    }
+
     //Solution complexity is O(NlogN), however description requires O(N)
     //that's why not posting this
     //2 min

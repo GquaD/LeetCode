@@ -9,6 +9,39 @@ public class Problem680 {
         System.out.println(validPalindrome("abc"));
     }
 
+    //5min
+    //Runtime
+    //7
+    //ms
+    //Beats
+    //11.72%
+    //Analyze Complexity
+    //Memory
+    //45.74
+    //MB
+    //Beats
+    //15.84%
+    //public boolean validPalindrome(String s) {
+    //        int idx = -1, len = s.length();
+    //        for (int i = 0; i < len / 2; i++) {
+    //            if (s.charAt(i) != s.charAt(len - i - 1)) {
+    //                idx = i;
+    //                break;
+    //            }
+    //        }
+    //        if (idx == -1) return true;
+    //
+    //        return isPalindrome(s.substring(0, idx) + s.substring(idx + 1)) || isPalindrome(s.substring(0, len - idx - 1) + s.substring(len - idx));
+    //    }
+    //
+    //    private boolean isPalindrome(String s) {
+    //        for (int i = 0; i < s.length() / 2; i++) {
+    //            if (s.charAt(i) != s.charAt(s.length() - i - 1))
+    //                return false;
+    //        }
+    //        return true;
+    //    }
+
     //https://leetcode.com/problems/valid-palindrome-ii/solutions/4358133/java-o-3n-o-n-solution/
     //10min
     //Runtime

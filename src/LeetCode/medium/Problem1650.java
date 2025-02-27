@@ -7,6 +7,33 @@ public class Problem1650 {
 
     }
 
+    //https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iii/solutions/6472560/java-on-hashset-solution-by-tbekpro-ph7l/
+    //3min
+    //Runtime
+    //28
+    //ms
+    //Beats
+    //78.74%
+    //Analyze Complexity
+    //Memory
+    //45.86
+    //MB
+    //Beats
+    //5.11%
+    //public Node lowestCommonAncestor(Node a, Node b) {
+    //        Set<Integer> set = new HashSet<>();
+    //        while (a != null) {
+    //            set.add(a.val);
+    //            a = a.parent;
+    //        }
+    //
+    //        while (b != null) {
+    //            if (set.contains(b.val)) return b;
+    //            b = b.parent;
+    //        }
+    //        return a;
+    //    }
+
 
     //https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iii/solutions/4711432/java-o-n-solution/
     //15-20min

@@ -1,4 +1,4 @@
-package LeetCode;
+package LeetCode.easy;
 
 public class Problem3491 {
     //https://leetcode.com/problems/phone-number-prefix/description/

@@ -15,9 +15,6 @@ public class Problem3502 {
     //97.67%
     //Analyze Complexity
     //Memory
-    //44.91
-    //MB
-    //Beats
     //69.82%
     public int[] minCosts(int[] cost) {
         int min = cost[0];

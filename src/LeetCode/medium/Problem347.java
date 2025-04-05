@@ -8,6 +8,40 @@ public class Problem347 {
         System.out.println(Arrays.toString(topKFrequent(new int[]{1,1,1,2,2,3}, 2)));
     }
 
+    //5min
+    //Runtime
+    //13
+    //ms
+    //Beats
+    //76.33%
+    //Analyze Complexity
+    //Memory
+    //49.40
+    //MB
+    //Beats
+    //10.29%
+    //    public int[] topKFrequent(int[] nums, int k) {
+    //        Map<Integer, Integer> map = new HashMap<>();
+    //        for (int n: nums) map.put(n, map.getOrDefault(n, 0) + 1);
+    //        PriorityQueue<Pair> pq = new PriorityQueue<>((a, b) -> a.f - b.f);
+    //        for (int key: map.keySet()) {
+    //            pq.offer(new Pair(key, map.get(key)));
+    //            if (pq.size() > k) pq.poll();
+    //        }
+    //        int[] res = new int[k];
+    //        for (int i = 0; i < k; i++) res[i] = pq.poll().n;
+    //        return res;
+    //    }
+    //
+    //    class Pair {
+    //        int n, f;
+    //
+    //        public Pair(int a, int b) {
+    //            n = a;
+    //            f = b;
+    //        }
+    //    }
+
     //Runtime
     //13 ms
     //Beats

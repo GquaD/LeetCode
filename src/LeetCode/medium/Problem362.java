@@ -12,42 +12,43 @@ public class Problem362 {
 }
 
 
-//https://leetcode.com/problems/design-hit-counter/solutions/4811066/java-from-3ms-to-1ms-hashmap-vs-treemap/
-//5min
-//Runtime
-//1
-//ms
-//Beats
-//61.31%
-//of users with Java
-//Memory
-//41.54
-//MB
-//Beats
-//38.37%
-//of users with Java
-class HitCounter2 {
+    //https://leetcode.com/problems/design-hit-counter/solutions/4811066/java-from-3ms-to-1ms-hashmap-vs-treemap/
+    //
+    //5min
+    //Runtime
+    //1
+    //ms
+    //Beats
+    //61.31%
+    //of users with Java
+    //Memory
+    //41.54
+    //MB
+    //Beats
+    //38.37%
+    //of users with Java
+    class HitCounter2 {
 
-    TreeMap<Integer, Integer> map;
-    public HitCounter2() {
-        map = new TreeMap<>();
-    }
-
-    public void hit(int t) {
-        map.put(t, map.getOrDefault(t, 0) + 1);
-    }
-
-    public int getHits(int t) {
-        int i = t - 300, res = 0;
-
-        Map.Entry<Integer, Integer> entry = map.higherEntry(i);
-        while (entry != null && entry.getKey() <= t) {
-            res += entry.getValue();
-            entry = map.higherEntry(entry.getKey());
+        TreeMap<Integer, Integer> map;
+        public HitCounter2() {
+            map = new TreeMap<>();
         }
-        return res;
+
+        public void hit(int t) {
+            map.put(t, map.getOrDefault(t, 0) + 1);
+        }
+
+        public int getHits(int t) {
+            int i = t - 300, res = 0;
+
+            Map.Entry<Integer, Integer> entry = map.higherEntry(i);
+            while (entry != null && entry.getKey() <= t) {
+                res += entry.getValue();
+                entry = map.higherEntry(entry.getKey());
+            }
+            return res;
+        }
     }
-}
 
 //
 //5min

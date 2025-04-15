@@ -1,12 +1,21 @@
 package LeetCode.easy;
 
 public class Problem104 {
-    //
+    //https://leetcode.com/problems/maximum-depth-of-binary-tree
     public static void main(String[] args) {
 
     }
-    //Runtime: 0 ms, faster than 100.00% of Java online submissions for Maximum Depth of Binary Tree.
-    //Memory Usage: 42.9 MB, less than 69.71% of Java online submissions for Maximum Depth of Binary Tree.
+    //Runtime
+    //0
+    //ms
+    //Beats
+    //100.00%
+    //Analyze Complexity
+    //Memory
+    //42.67
+    //MB
+    //Beats
+    //61.73%
     static int max;
     public static int maxDepth(TreeNode root) {
         max = 0;

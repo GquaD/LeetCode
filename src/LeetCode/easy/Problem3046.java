@@ -24,4 +24,24 @@ public class Problem3046 {
         for (int n: nums) if (++arr[n] > 2) return false;
         return true;
     }
+
+    //Runtime
+    //2
+    //ms
+    //Beats
+    //66.13%
+    //Analyze Complexity
+    //Memory
+    //43.19
+    //MB
+    //Beats
+    //33.02%
+    //public boolean isPossibleToSplit(int[] nums) {
+    //        Map<Integer, Integer> map = new HashMap<>();
+    //        for (int n: nums) {
+    //            map.put(n, map.getOrDefault(n, 0) + 1);
+    //            if (map.get(n) > 2) return false;
+    //        }
+    //        return true;
+    //    }
 }

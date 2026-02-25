@@ -30,4 +30,22 @@ public class Problem3707 {
         }
         return false;
     }
+
+//    public double maxAverageRatio(int[][] classes, int e) {
+//        Arrays.sort(classes, (a, b) -> a[1] == b[1] ? b[0] - a[0] : a[1] - b[1]);
+//        double sum = 0.0;
+//        for (int[] class: classes) {
+//            int all = class[1], pass = class[0];
+//            int diff = all - pass;
+//            if (e >= diff) {
+//                pass = all;
+//                e -= diff;
+//            } else {
+//                pass += e;
+//                e = 0;
+//            }
+//            sum += pass * 1.0 / all;
+//        }
+//        return sum / classes.length;
+//    }
 }

@@ -9,6 +9,34 @@ public class Problem9 {
 
     }
 
+    //Runtime
+    //6
+    //ms
+    //Beats
+    //20.93%
+    //Memory
+    //45.85
+    //MB
+    //Beats
+    //71.96%
+    public boolean isPalindrome2(int x) {
+        if (x < 0)
+            return false;
+        List<Integer> list = new ArrayList<>();
+
+        while (x > 0) {
+            list.add(x % 10);
+            x /= 10;
+        }
+
+        for (int i = 0; i < list.size() / 2; i++) {
+            if (list.get(i) != list.get(list.size() - 1 - i))
+                return false;
+        }
+
+        return true;
+    }
+
     //20mins
     //https://leetcode.com/problems/palindrome-number/solutions/2650768/java-3-solutions-from-slowest-to-fastest/
 

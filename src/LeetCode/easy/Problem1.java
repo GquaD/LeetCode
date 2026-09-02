@@ -13,6 +13,21 @@ public class Problem1 {
         System.out.println(Arrays.toString(twoSum(new int[]{2, 4, 2, 90}, 4)));
     }
 
+    public int[] twoSum23(int[] nums, int target) {
+        //num -> idx
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            int key = target - nums[i];
+            Integer idx = map.get(key);
+            if (idx != null) {
+                return new int[] {idx, i};
+            }
+            map.put(nums[i], i);
+        }
+
+        return null;
+    }
+
     //10min
     //Runtime
     //7

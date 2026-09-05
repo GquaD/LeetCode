@@ -6,6 +6,39 @@ public class Problem2 {
 
     }
 
+
+    //5min
+    //Runtime
+    //1
+    //ms
+    //Beats
+    //100.00%
+    //Memory
+    //46.82
+    //MB
+    //Beats
+    //6.59%
+    public ListNode addTwoNumbers2(ListNode l1, ListNode l2) {
+        int mem = 0;
+        ListNode head = l1, last = l1;
+
+        while (l1 != null) {
+            l1.val += l2 == null ? mem : l2.val + mem;
+            mem = l1.val / 10;
+            l1.val %= 10;
+            if (l2 != null && l1.next == null && l2.next != null) {
+                l1.next = new ListNode();
+            }
+            last = l1;
+            l1 = l1.next;
+            l2 = l2 == null ? null : l2.next;
+        }
+
+        if (mem != 0) last.next = new ListNode(mem);
+
+        return head;
+    }
+
     //https://leetcode.com/problems/add-two-numbers/solutions/6434234/java-1ms-100-faster-solution-by-tbekpro-th1b/
     //10min
     //Runtime

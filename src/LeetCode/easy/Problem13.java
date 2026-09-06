@@ -11,6 +11,41 @@ public class Problem13 {
         System.out.println(romanToInt("DCXXI"));
     }
 
+
+    //10min
+    //Runtime
+    //2
+    //ms
+    //Beats
+    //100.00%
+    //Memory
+    //46.48
+    //MB
+    //Beats
+    //61.63%
+//    public int romanToInt3(String s) {
+//        int sum = 0, prev = 10000;
+//        for (int i = 0; i < s.length(); i++) {
+//            int cur = convert(s.charAt(i));
+//            sum = prev < cur ? sum + cur - (prev * 2) : sum + cur;
+//            prev = cur;
+//        }
+//        return sum;
+//    }
+//
+//    private int convert(char c) {
+//        int result = switch(c) {
+//            case 'I' -> 1;
+//            case 'V' -> 5;
+//            case 'X' -> 10;
+//            case 'L' -> 50;
+//            case 'C' -> 100;
+//            case 'D' -> 500;
+//            default -> 1000;
+//        };
+//        return result;
+//    }
+
     //https://leetcode.com/problems/roman-to-integer/solutions/2667144/two-java-solutions/
     //Runtime
     //8 ms

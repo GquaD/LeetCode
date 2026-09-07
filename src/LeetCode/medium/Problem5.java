@@ -7,6 +7,66 @@ public class Problem5 {
         System.out.println(longestPalindrome("bbcd"));
         System.out.println(longestPalindrome("cbbd"));
     }
+
+
+
+    //Runtime
+    //23
+    //ms
+    //Beats
+    //32.39%
+    //Memory
+    //47.19
+    //MB
+    //Beats
+
+    public String longestPalindrome4(String s) {
+
+        int max = 1;
+        String maxs = "" + s.charAt(0);
+        for (int i = 0; i < s.length() - 1; i++) {
+            char c = s.charAt(i);
+            int len = 1;
+            String t = "" + c;
+
+            if (c == s.charAt(i + 1)) {
+                len = 0;
+                int idx = 0;
+                while (i - idx >= 0 && i + idx + 1 < s.length()) {
+                    if (s.charAt(i - idx) == s.charAt(i + idx + 1)) {
+                        len += 2;
+                    } else {
+                        break;
+                    }
+                    idx++;
+                }
+                t = s.substring(i - idx + 1, i + idx + 1);
+            }
+            if (max < t.length()) {
+                max = t.length();
+                maxs = t;
+            }
+            if (i - 1 >= 0) {
+                int idx = 1;
+                while (i - idx >= 0 && i + idx < s.length()) {
+                    if (s.charAt(i - idx) == s.charAt(i + idx)) {
+                        len += 2;
+                    } else {
+                        break;
+                    }
+                    idx++;
+                }
+                t = s.substring(i - idx + 1, i + idx);
+            }
+
+            if (max < t.length()) {
+                max = t.length();
+                maxs = t;
+            }
+        }
+
+        return maxs;
+    }
     //todo
     //30 mins
     //Runtime: 1454 ms, faster than 5.00% of Java online submissions for Longest Palindromic Substring.

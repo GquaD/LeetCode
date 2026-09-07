@@ -11,7 +11,48 @@ public class Problem128 {
 
     }
 
-    //nnnn O(N)
+    //Runtime
+    //49
+    //ms
+    //Beats
+    //7.07%
+    //Memory
+    //115.85
+    //MB
+    //Beats
+    //5.05%
+    //real O(N) solution
+    public int longestConsecutive3(int[] nums) {
+        int max = 0;
+        Set<Integer> set = new HashSet<>(), visited = new HashSet<>();
+
+        for (int n : nums) set.add(n);
+
+        for (int n: set) {
+            if (!visited.contains(n)) {
+                visited.add(n);
+
+                int len = 1, left = n;
+                while (set.contains(n + 1)) {
+                    len++;
+                    n++;
+                    visited.add(n);
+                }
+
+                while (set.contains(left - 1)) {
+                    len++;
+                    left--;
+                    visited.add(left);
+                }
+
+                max = Math.max(max, len);
+            }
+        }
+
+        return max;
+    }
+
+    //nnnn O(N^2)
     //Runtime
     //36 ms
     //Beats

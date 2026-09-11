@@ -13,6 +13,34 @@ public class Problem11 {
         System.out.println(maxArea(new int[]{1,2,3,4,5,25,24,3,4})); //
     }
 
+    //Runtime
+    //5
+    //ms
+    //Beats
+    //82.96%
+    //Memory
+    //77.33
+    //MB
+    //Beats
+    //49.03%
+    public int maxArea5(int[] height) {
+        int left = 0, right = height.length - 1, maxArea = 0;
+
+        while (left <= right) {
+            int width = right - left, area = width * Math.min(height[left], height[right]);
+            maxArea = Math.max(maxArea, area);
+
+            if (height[left] <= height[right]) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+
+        return maxArea;
+    }
+
+
     //https://leetcode.com/problems/container-with-most-water/solutions/2660581/java-solution-in-just-5-ms-with-image-and-explanation/
     //3 hours
     //Runtime

@@ -9,6 +9,47 @@ public class Problem875 {
         System.out.println(minEatingSpeed(new int[]{3,6,7,11}, 8));
     }
 
+    //Runtime
+    //17
+    //ms
+    //Beats
+    //33.19%
+    //Memory
+    //42.96
+    //MB
+    //Beats
+    //100.00%
+    public int minEatingSpeed2(int[] piles, int time) {
+        int min = 1, max = min, result = Integer.MAX_VALUE;
+
+        for (int i = 0; i < piles.length; i++) {
+            max = Math.max(max, piles[i]);
+        }
+
+        while (min <= max) {
+            int mid = (min + max) / 2;
+            int eat = eatable(piles, time, mid);
+            if (eat >= 0) {
+                result = Math.min(result, mid);
+                max = mid - 1;
+            } else {
+                min = mid + 1;
+            }
+        }
+
+        return result;
+    }
+
+    private int eatable(int[] piles, int time, int speed) {
+        long result = 0;
+        for (int pile: piles) {
+            int h = pile % speed > 0 ? pile / speed + 1 : pile / speed;
+            result += h;
+        }
+
+        return result < time ? 1 : result == time ? 0 : -1;
+    }
+
     //https://leetcode.com/problems/koko-eating-bananas/solutions/3270857/java-o-n-nlogn-solution/
     //40 min
     //Runtime

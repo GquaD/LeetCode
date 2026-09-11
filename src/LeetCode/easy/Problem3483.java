@@ -8,6 +8,35 @@ public class Problem3483 {
 
     }
 
+    //Runtime
+    //6
+    //ms
+    //Beats
+    //50.40%
+    //Memory
+    //46.17
+    //MB
+    //Beats
+    //69.07%
+    public int totalNumbers1(int[] digits) {
+        Set<Integer> set = new HashSet<>();
+
+        for (int i = 0; i < digits.length; i++) {
+            int di = digits[i];
+            if (di == 0) continue;
+            for (int j = 0; j < digits.length; j++) {
+                for (int k = 0; k < digits.length; k++) {
+                    int d = digits[k];
+                    if (i == j || i == k || j == k || d % 2 != 0) continue;
+                    int num = di * 100 + digits[j] * 10 + d;
+                    if (num > 99) set.add(num);
+                }
+            }
+        }
+
+        return set.size();
+    }
+
     //https://leetcode.com/problems/unique-3-digit-even-numbers/solutions/6567348/java-backtracking-solution-explained-by-g6qr5/
     //30min
     //Runtime

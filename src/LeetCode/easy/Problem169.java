@@ -30,6 +30,34 @@ public class Problem169 {
         System.out.println("eight: " + majorityElementNewAlgorithm(eight));
     }
 
+    //5min
+    //Runtime
+    //15
+    //ms
+    //Beats
+    //23.94%
+    //Memory
+    //55.16
+    //MB
+    //Beats
+    //70.84%
+    public int majorityElement(int[] nums) {
+        Map<Integer, Integer> map = new HashMap<>();
+
+        for (int n: nums) map.put(n, map.getOrDefault(n, 0) + 1);
+
+        int minf = 0, value = -1;
+        for (int key: map.keySet()) {
+            int f = map.get(key);
+            if (f > minf) {
+                minf = f;
+                value = key;
+            }
+        }
+
+        return value;
+    }
+
     public static int majorityElementWithMap(int[] nums) {
         int halfOfLength = nums.length / 2;
         // number ,  frequency

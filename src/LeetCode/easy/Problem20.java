@@ -16,6 +16,45 @@ public class Problem20 {
         System.out.println(isValidParentheses("(){}}{"));
     }
 
+    //Runtime
+    //3
+    //ms
+    //Beats
+    //85.89%
+    //Memory
+    //43.61
+    //MB
+    //Beats
+    //9.80%
+    public boolean isValid(String s) {
+        Stack<Character> stack = new Stack<>();
+
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+
+            boolean isOpening = c == '(' || c == '[' || c == '{';
+            if (isOpening) {
+                stack.push(c);
+            } else if (stack.isEmpty()) {
+                return false;
+            } else {
+                char last = stack.peek();
+                if (last == '(') {
+                    if (c == ')') stack.pop();
+                    else return false;
+                } else if (last == '[') {
+                    if (c == ']') stack.pop();
+                    else return false;
+                } else {
+                    if (c == '}') stack.pop();
+                    else return false;
+                }
+            }
+        }
+
+        return stack.size() == 0;
+    }
+
 
     //took 20-30mins
     //https://leetcode.com/problems/valid-parentheses/solutions/2641027/java-2-solutions-stack-arraylist-in-just-1-ms-99-71-faster/

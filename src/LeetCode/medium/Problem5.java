@@ -9,6 +9,101 @@ public class Problem5 {
     }
 
 
+    //Runtime
+    //1609
+    //ms
+    //Beats
+    //9.07%
+    //Memory
+    //46.95
+    //MB
+    //Beats
+    //22.12%
+
+    public String longestPalindrome3(String s) {
+        if (s.length() == 1)
+            return s;
+
+        String max = "";
+
+        for (int i = 0; i < s.length(); i++) {
+            int d = 0;
+            while (i - d >= 0 && i + d < s.length()) {
+                if (isPalindrome2(i - d, i + d, s)) {
+                    if (i + d - (i - d) + 1 > max.length()) {
+                        max = s.substring(i - d, i + d + 1);
+                    }
+                } else break;
+
+                d++;
+            }
+        }
+
+        for (int i = 0; i < s.length() - 1; i++) {
+            if (s.charAt(i) == s.charAt(i + 1)) {
+                int d = 0;
+                while (i - d >= 0 && i + 1 + d < s.length()) {
+                    if (isPalindrome2(i - d, i + 1 + d, s)) {
+                        if (i + 1 + d - (i - d) + 1 > max.length()) {
+                            max = s.substring(i - d, i + 1 + d + 1);
+                        }
+                    } else break;
+
+                    d++;
+                }
+            }
+        }
+
+        return max;
+    }
+
+    private boolean isPalindrome2(int start, int end, String s) {
+        int mid = (end - start) / 2;
+        for (int i = 0; i <= mid; i++) {
+            if (s.charAt(start + i) != s.charAt(end - i)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+
+    //Runtime
+    //1900
+    //ms
+    //Beats
+    //6.57%
+    //Memory
+    //46.64
+    //MB
+    //Beats
+    //35.13%
+    public String longestPalindrome2(String s) {
+        String max = s.charAt(0) + "";
+        for (int i = 0; i < s.length() - 1; i++) {
+            for (int j = i + 1; j < s.length(); j++) {
+                if (isPalindrome(i, j, s)) {
+                    if (j - i + 1 > max.length()) {
+                        max = s.substring(i, j + 1);
+                    }
+                }
+            }
+        }
+
+        return max;
+    }
+
+    private boolean isPalindrome(int start, int end, String s) {
+        int mid = (end - start) / 2;
+        for (int i = 0; i <= mid; i++) {
+            if (s.charAt(start + i) != s.charAt(end - i)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 
     //Runtime
     //23

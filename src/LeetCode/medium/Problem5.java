@@ -10,6 +10,54 @@ public class Problem5 {
 
 
     //Runtime
+    //21
+    //ms
+    //Beats
+    //34.92%
+    //Memory
+    //47.16
+    //MB
+    //Beats
+    //13.47%
+    public String longestPalindrome5(String s) {
+        int max = 1;
+        String maxs = "" + s.charAt(0);
+        for (int i = 0; i < s.length() - 1; i++) {
+            char c = s.charAt(i);
+            String t = "" + c;
+
+            if (c == s.charAt(i + 1)) {
+                int idx = 0;
+                while (i - idx >= 0 && i + idx + 1 < s.length()) {
+                    if (s.charAt(i - idx) != s.charAt(i + idx + 1)) break;
+                    idx++;
+                }
+                t = s.substring(i - idx + 1, i + idx + 1);
+            }
+            if (max < t.length()) {
+                max = t.length();
+                maxs = t;
+            }
+            if (i - 1 >= 0) {
+                int idx = 1;
+                while (i - idx >= 0 && i + idx < s.length()) {
+                    if (s.charAt(i - idx) != s.charAt(i + idx)) break;
+                    idx++;
+                }
+                t = s.substring(i - idx + 1, i + idx);
+            }
+
+            if (max < t.length()) {
+                max = t.length();
+                maxs = t;
+            }
+        }
+
+        return maxs;
+    }
+
+
+    //Runtime
     //1609
     //ms
     //Beats

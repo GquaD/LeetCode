@@ -12,6 +12,54 @@ public class Problem17 {
         LeetCodeUtils.printList(letterCombinations("3"));
     }
 
+    //10min
+    //Runtime
+    //0
+    //ms
+    //Beats
+    //100.00%
+    //Memory
+    //43.45
+    //MB
+    //Beats
+    //67.10%
+    public List<String> letterCombinations3(String digits) {
+        char[][] buttons = new char[][]{
+                {'a', 'b', 'c'},
+                {'d', 'e', 'f'},
+                {'g', 'h', 'i'},
+                {'j', 'k', 'l'},
+                {'m', 'n', 'o'},
+                {'p', 'q', 'r', 's'},
+                {'t', 'u', 'v'},
+                {'w', 'x', 'y', 'z'}
+        };
+
+        StringBuilder sb = new StringBuilder();
+
+        List<String> list = new ArrayList<>();
+
+        traverse(0, buttons, list, sb, digits);
+
+        return list;
+    }
+
+    private void traverse(int idx, char[][] buttons, List<String> list, StringBuilder sb, String digits) {
+        if (idx >= digits.length()) {
+            list.add(sb.toString());
+            return;
+        }
+
+        int button = digits.charAt(idx) - '0';
+        char[] chars = buttons[button - 2];
+        for (char c: chars) {
+            int len = sb.length();
+            sb.append(c);
+            traverse(idx + 1, buttons, list, sb, digits);
+            sb.setLength(len);
+        }
+    }
+
     //https://leetcode.com/problems/letter-combinations-of-a-phone-number/solutions/2709679/java-just-in-1-ms-2-solutions-using-random-and-recursion/
     //less than 1 hour for this solution
     //Runtime

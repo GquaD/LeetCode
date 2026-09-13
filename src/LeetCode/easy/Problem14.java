@@ -18,6 +18,50 @@ public class Problem14 {
         System.out.println(longestCommonPrefix1(new String[]{"flower","flower","flower","flower"}));
 
     }
+
+    //https://leetcode.com/problems/longest-common-prefix/solutions/8519989/java-trie-hard-solution-by-tbekpro-6lw5/
+    //Runtime
+    //3
+    //ms
+    //Beats
+    //13.33%
+    //Memory
+    //43.49
+    //MB
+    //Beats
+    //16.70%
+    public String longestCommonPrefix4(String[] strs) {
+        TrieNode root = new TrieNode(), temp = root;
+        StringBuilder sb = new StringBuilder();
+        String maxs = "";
+
+        for (String s: strs) {
+            for (int i = 0; i < s.length(); i++) {
+                int c = s.charAt(i) - 'a';
+                if (temp.arr[c] == null) {
+                    temp.arr[c] = new TrieNode();
+                }
+                temp.arr[c].freq++;
+                temp = temp.arr[c];
+                sb.append(s.charAt(i));
+
+                if (strs.length == temp.freq) {
+                    maxs = sb.toString();
+                }
+            }
+            sb.setLength(0);
+            temp = root;
+        }
+
+        return maxs;
+    }
+
+    class TrieNode {
+        int freq = 0;
+        TrieNode[] arr = new TrieNode[26];
+    }
+
+
     //Runtime: 12 ms, faster than 18.73% of Java online submissions for Longest Common Prefix.
     //Memory Usage: 41.6 MB, less than 77.77% of Java online submissions for Longest Common Prefix.
     private static String longestCommonPrefix1(String[] strs) {

@@ -14,6 +14,63 @@ public class Problem22 {
         LeetCodeUtils.printList(generateParenthesis(4));
     }
 
+    //10min
+    //Runtime
+    //7
+    //ms
+    //Beats
+    //6.02%
+    //Memory
+    //46.40
+    //MB
+    //Beats
+    //5.05%
+    public List<String> generateParenthesis3(int n) {
+        //write a method to validate the string
+        //backtracking algo
+
+        StringBuilder sb = new StringBuilder();
+        List<String> list = new ArrayList<>();
+
+        generate(n, sb, list);
+
+        return list;
+    }
+
+    private void generate(int n, StringBuilder sb, List<String> list) {
+        if (sb.length() == n + n) {
+            if (isValid(sb.toString())) {
+                list.add(sb.toString());
+            }
+            return;
+        }
+
+        int len = sb.length();
+        sb.append("(");
+        generate(n, sb, list);
+        sb.setLength(len);
+
+        sb.append(")");
+        generate(n, sb, list);
+        sb.setLength(len);
+    }
+
+    private boolean isValid(String s) {
+        int open = 0;
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (c == '(') {
+                open++;
+            } else if (open <= 0) {
+                return false;
+            } else {
+                open--;
+            }
+        }
+
+        return open == 0;
+    }
+
     //1-2 hours
     //Runtime: 77 ms, faster than 5.18% of Java online submissions for Generate Parentheses.
     //Memory Usage: 73.3 MB, less than 5.31% of Java online submissions for Generate Parentheses.

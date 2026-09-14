@@ -1,5 +1,7 @@
 package LeetCode.hard;
 
+import LeetCode.medium.ListNode;
+
 import java.util.*;
 
 public class Problem23 {
@@ -22,6 +24,42 @@ public class Problem23 {
         node3.next = node8;
         ListNode[] lists = new ListNode[]{node1, node2, node3};
         System.out.println(mergeKLists(lists).val);
+    }
+
+    //10min
+    //Runtime
+    //5
+    //ms
+    //Beats
+    //40.55%
+    //Memory
+    //46.63
+    //MB
+    //Beats
+    //79.67%
+    public ListNode mergeKLists33(ListNode[] lists) {
+        PriorityQueue<ListNode> pq = new PriorityQueue<>((a, b) -> a.val - b.val);
+
+        for (ListNode node : lists) {
+            while (node != null) {
+                pq.offer(node);
+                node = node.next;
+            }
+        }
+
+        if (pq.isEmpty())
+            return null;
+
+        ListNode head = pq.poll(), temp = head;
+
+        while (!pq.isEmpty()) {
+            temp.next = pq.poll();
+            temp = temp.next;
+        }
+
+        temp.next = null;
+
+        return head;
     }
 
     //https://leetcode.com/problems/merge-k-sorted-lists/solutions/3286121/java-2-solutions-priorityqueue-arraylist/

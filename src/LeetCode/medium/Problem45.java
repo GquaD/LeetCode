@@ -18,6 +18,31 @@ public class Problem45 {
         System.out.println(jump(new int[]{0}));
     }
 
+    //15min
+    //Runtime
+    //40
+    //ms
+    //Beats
+    //11.90%
+    //Memory
+    //47.02
+    //MB
+    //Beats
+    //88.30%
+    public int jump3(int[] nums) {
+        if (nums.length == 1) return 0;
+        int[] dp = new int[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            int cur = nums[i], jumps = dp[i];
+            for (int j = 0; j <= cur && i + j < dp.length; j++) {
+                if (dp[i + j] == 0 || dp[i + j] > jumps + 1)
+                    dp[i + j] = jumps + 1;
+            }
+        }
+
+        return dp[dp.length - 1];
+    }
+
     //https://leetcode.com/problems/jump-game-ii/solutions/3085571/java-3-ms-solution/
     //1 hour
     //Runtime

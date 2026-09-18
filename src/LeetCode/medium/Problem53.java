@@ -10,6 +10,27 @@ public class Problem53 {
         System.out.println(maxSubArray(new int[]{-2, 1}));
     }
 
+
+    //5min
+    //Runtime
+    //1
+    //ms
+    //Beats
+    //99.93%
+    //Memory
+    //77.21
+    //MB
+    //Beats
+    //48.98%
+    public int maxSubArray2(int[] nums) {
+        int temp = 0, maxSum = Integer.MIN_VALUE;
+        for (int n: nums) {
+            temp = Math.max(n, temp + n);
+            maxSum = Math.max(maxSum, temp);
+        }
+        return maxSum;
+    }
+
     //
     //5 min
     //Runtime

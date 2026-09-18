@@ -17,6 +17,52 @@ public class Problem49 {
         LeetCodeUtils.printListWithListsOfStrings(groupAnagrams(new String[]{"eat","tea","tan","ate","nat","bat","bata"}));
     }
 
+
+    //10min
+    //Runtime
+    //14
+    //ms
+    //Beats
+    //24.52%
+    //Memory
+    //49.31
+    //MB
+    //Beats
+    //92.10%
+    StringBuilder sb = new StringBuilder();
+
+    public List<List<String>> groupAnagrams3(String[] strs) {
+        int[][] arr = new int[strs.length][26];
+        for (int i = 0; i < strs.length; i++) {
+            String s = strs[i];
+            for (int j = 0; j < s.length(); j++) {
+                arr[i][s.charAt(j) - 'a']++;
+            }
+        }
+
+        Map<String, List<String>> map = new HashMap<>();
+
+        for (int i = 0; i < arr.length; i++) {
+            int[] a = arr[i];
+            String key = generateKey(a);
+            List<String> list = map.get(key);
+            if (list == null) {
+                list = new ArrayList<>();
+                map.put(key, list);
+            }
+
+            list.add(strs[i]);
+        }
+
+        return new ArrayList<>(map.values());
+    }
+
+    private String generateKey(int[] a) {
+        sb.setLength(0);
+        for (int n: a) sb.append(n).append('_');
+        return sb.toString();
+    }
+
     //https://leetcode.com/problems/group-anagrams/solutions/2665998/java-three-approaches-to-one-solution/
     //Runtime
     //13 ms

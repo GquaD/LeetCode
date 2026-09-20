@@ -37,6 +37,38 @@ public class Problem62 {
         return m + ", " + n + " -> " + result;
     }
 
+
+    //15min
+    //Runtime
+    //1
+    //ms
+    //Beats
+    //13.23%
+    //Memory
+    //42.17
+    //MB
+    //Beats
+    //47.45%
+    public int uniquePaths3(int m, int n) {
+        int[][] arr = new int[m][n];
+        arr[0][0] = 1;
+
+        for (int y = 0; y < m; y++) {
+            for (int x = 0; x < n; x++) {
+                //check left and up cells for value and add to find current's value
+                int up = cellExists(m, n, y - 1, x) ? arr[y - 1][x] : 0, left = cellExists(m, n, y, x - 1) ? arr[y][x - 1] : 0;
+                arr[y][x] = Math.max(up + left, arr[y][x]);
+            }
+        }
+
+        return arr[m - 1][n - 1];
+    }
+
+
+    private boolean cellExists(int m, int n, int y, int x) {
+        return y >= 0 && x >= 0 && y < m && x < n;
+    }
+
     public static int uniquePaths(int m, int n) {
         int[][] array = new int[m][n];
         number = 0;

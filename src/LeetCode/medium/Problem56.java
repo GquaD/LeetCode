@@ -26,6 +26,36 @@ public class Problem56 {
     }
 
 
+    //10min
+    //Runtime
+    //13
+    //ms
+    //Beats
+    //5.55%
+    //Memory
+    //48.66
+    //MB
+    //Beats
+    //95.59%
+    public int[][] merge3(int[][] intervals) {
+        Arrays.sort(intervals, (a, b) -> a[0] == b[0] ? a[1] - b[1] : a[0] - b[0]);
+
+        List<int[]> list = new ArrayList<>();
+        list.add(intervals[0]);
+        for (int i = 1; i < intervals.length; i++) {
+            int[] last = list.get(list.size() - 1), cur = intervals[i];
+            if (last[1] < cur[0]) list.add(cur);
+            else last[1] = Math.max(last[1], cur[1]);
+        }
+
+        int[][] result = new int[list.size()][2];
+        for (int i = 0; i < list.size(); i++) {
+            result[i] = list.get(i);
+        }
+
+        return result;
+    }
+
     //15min
     //Runtime
     //8

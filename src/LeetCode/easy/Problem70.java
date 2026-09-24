@@ -7,6 +7,33 @@ public class Problem70 {
     public static void main(String[] args) {
 
     }
+
+    //2min
+    //Runtime
+    //0
+    //ms
+    //Beats
+    //100.00%
+    //Memory
+    //42.04
+    //MB
+    //Beats
+    //54.59%
+    private static int[] arr = calcSteps();
+
+    public int climbStairs2(int n) {
+        return arr[n];
+    }
+
+    private static int[] calcSteps() {
+        int[] res = new int[46];
+        res[0] = 1;
+        res[1] = 1;
+        for (int i = 2; i < res.length; i++) res[i] = res[i - 1] + res[i - 2];
+
+        return res;
+    }
+
     //Runtime: 1 ms, faster than 11.20% of Java online submissions for Climbing Stairs.
     //Memory Usage: 40.7 MB, less than 65.44% of Java online submissions for Climbing Stairs.
     public int climbStairs(int n) {

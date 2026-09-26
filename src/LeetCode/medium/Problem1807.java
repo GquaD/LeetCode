@@ -11,6 +11,39 @@ public class Problem1807 {
         System.out.println(evaluate("(name)is(age)yeatsold", list));
     }
 
+    //15-20min
+    //Runtime
+    //40
+    //ms
+    //Beats
+    //42.99%
+    //Memory
+    //90.52
+    //MB
+    //Beats
+    //86.42%
+    public String evaluate2(String s, List<List<String>> knowledge) {
+        Map<String, String> map = new HashMap<>();
+        for (List<String> pair: knowledge) map.put(pair.get(0), pair.get(1));
+
+        StringBuilder sb = new StringBuilder();
+        int idx = 0;
+        while (idx < s.length()) {
+            int start = s.indexOf("(", idx), end = s.indexOf(")", idx);
+            if (start < 0) break;
+            sb.append(s.substring(idx, start));
+            String key = s.substring(start + 1, end);
+            String val = map.get(key);
+            if (val == null) sb.append("?");
+            else sb.append(val);
+            idx = end + 1;
+        }
+
+        if (idx < s.length()) sb.append(s.substring(idx, s.length()));
+
+        return sb.toString();
+    }
+
     //https://leetcode.com/problems/evaluate-the-bracket-pairs-of-a-string/solutions/3429162/java-o-n-solution/
     //10 - 15 min
     //Runtime

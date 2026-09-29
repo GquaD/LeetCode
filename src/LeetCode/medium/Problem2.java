@@ -6,6 +6,57 @@ public class Problem2 {
 
     }
 
+    //30min
+    //Runtime
+    //1
+    //ms
+    //Beats
+    //100.00%
+    //Memory
+    //46.46
+    //MB
+    //Beats
+    //57.27%
+    public ListNode addTwoNumbers3(ListNode l1, ListNode l2) {
+        ListNode head = l1, temp = head;
+
+        int mem = 0, sum = 0;
+
+        while (!(l1 == null || l2 == null)) {
+            if (l1 != null) sum += l1.val;
+            if (l2 != null) sum += l2.val;
+            l1.val = (sum + mem) % 10;
+            mem = (sum + mem) / 10;
+            temp = l1;
+
+            if (l1.next == null) {
+                if (l2 != null) {
+                    l1.next = l2.next;
+                    l2 = null;
+                }
+                else break;
+            }
+            l1 = l1.next;
+
+
+            if (l2 != null) l2 = l2.next;
+
+
+            sum = 0;
+        }
+
+        while (l1 != null) {
+            sum = l1.val + mem;
+            l1.val = sum % 10;
+            mem = sum / 10;
+            temp = l1;
+            l1 = l1.next;
+        }
+
+        if (mem > 0) temp.next = new ListNode(mem);
+
+        return head;
+    }
 
     //5min
     //Runtime

@@ -13,6 +13,30 @@ public class Problem1 {
         System.out.println(Arrays.toString(twoSum(new int[]{2, 4, 2, 90}, 4)));
     }
 
+    //2min
+    //Runtime
+    //2
+    //ms
+    //Beats
+    //99.39%
+    //Memory
+    //47.34
+    //MB
+    //Beats
+    //11.44%
+    public int[] twoSum5(int[] nums, int target) {
+        Map<Integer, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < nums.length; i++) {
+            int n = nums[i], temp = target - n;
+            Integer k = map.get(temp);
+            if (k != null) return new int[]{k, i};
+            map.put(n, i);
+        }
+
+        return null;
+    }
+
     public int[] twoSum23(int[] nums, int target) {
         //num -> idx
         Map<Integer, Integer> map = new HashMap<>();

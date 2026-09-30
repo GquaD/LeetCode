@@ -8,6 +8,59 @@ public class Problem5 {
         System.out.println(longestPalindrome("cbbd"));
     }
 
+    //15min
+    //Runtime
+    //112
+    //ms
+    //Beats
+    //27.77%
+    //Memory
+    //43.49
+    //MB
+    //Beats
+    //80.33%
+    public String longestPalindrome6(String s) {
+        if (s.length() == 1)
+            return s;
+        int maxOdd = -1, maxEven = -1, idxOdd = 0, idxEven = 0;
+
+        for (int i = 0; i < s.length(); i++) {
+            int sizeOdd = calcOdd(i, s), sizeEven = calcEven(i, s);
+            if (sizeOdd > maxOdd) {
+                maxOdd = sizeOdd;
+                idxOdd = i;
+            }
+            if (sizeEven > maxEven) {
+                maxEven = sizeEven;
+                idxEven = i;
+            }
+        }
+
+        if (maxOdd * 2 + 1 >= maxEven * 2 + 2) {
+            return s.substring(idxOdd - maxOdd, idxOdd + maxOdd + 1);
+        } else {
+            return s.substring(idxEven - maxEven, idxEven + maxEven + 2);
+        }
+    }
+
+    private int calcOdd(int i, String s) {
+        int plus = 0;
+        while (i - plus >= 0 && i + plus < s.length()) {
+            if (s.charAt(i - plus) != s.charAt(i + plus)) break;
+            plus++;
+        }
+        return plus - 1;
+    }
+
+    private int calcEven(int i, String s) {
+        int plus = 0;
+        while (i - plus >= 0 && i + 1 + plus < s.length()) {
+            if (s.charAt(i - plus) != s.charAt(i + 1 + plus)) break;
+            plus++;
+        }
+        return plus - 1;
+    }
+
 
     //Runtime
     //21

@@ -9,6 +9,34 @@ public class Problem9 {
 
     }
 
+    //5min
+    //Runtime
+    //5
+    //ms
+    //Beats
+    //84.25%
+    //Memory
+    //46.23
+    //MB
+    //Beats
+    //6.22%
+    public boolean isPalindrome3(int x) {
+        if (x < 0) return false;
+
+        int size = 0, arr[] = new int[10];
+
+        while (x > 0) {
+            arr[size++] = x % 10;
+            x /= 10;
+        }
+
+        for (int i = 0; i < size; i++) {
+            if (arr[i] != arr[size - i - 1]) return false;
+        }
+
+        return true;
+    }
+
     //Runtime
     //6
     //ms

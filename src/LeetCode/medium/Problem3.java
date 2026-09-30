@@ -1,6 +1,7 @@
 package LeetCode.medium;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -11,6 +12,39 @@ public class Problem3 {
         System.out.println(lengthOfLongestSubstring("abcabcbb"));
         System.out.println(lengthOfLongestSubstring("bbbbb"));
         System.out.println(lengthOfLongestSubstring("pwwkew"));
+    }
+
+    //10-15min
+    //Runtime
+    //30
+    //ms
+    //Beats
+    //84.17%
+    //Memory
+    //47.83
+    //MB
+    //Beats
+    //60.27%
+    public int lengthOfLongestSubstring3(String s) {
+        //char -> lastIdx
+        Map<Character, Integer> map = new HashMap<>();
+
+        int maxLen = 0, len = 0, latestIdx = 0;
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            Integer idx = map.get(c);
+
+            if (idx != null) {
+                latestIdx = Math.max(idx, latestIdx);
+                len = i - latestIdx - 1;
+            }
+
+            map.put(c, i);
+            len++;
+            maxLen = Math.max(maxLen, len);
+        }
+
+        return Math.max(maxLen, len);
     }
 
     //Runtime

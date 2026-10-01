@@ -16,6 +16,45 @@ public class Problem20 {
         System.out.println(isValidParentheses("(){}}{"));
     }
 
+    //5-10min
+    //Runtime
+    //4
+    //ms
+    //Beats
+    //36.81%
+    //Memory
+    //43.36
+    //MB
+    //Beats
+    //40.74%
+    public boolean isValid2(String s) {
+        Stack<Character> stack = new Stack<>();
+
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+
+            if (stack.isEmpty() || isOpenBracket(c)) {
+                stack.push(c);
+                continue;
+            } else if (c == ')') {
+                if (stack.peek() != '(') return false;
+                stack.pop();
+            } else if (c == ']') {
+                if (stack.peek() != '[') return false;
+                stack.pop();
+            } else if (c == '}') {
+                if (stack.peek() != '{') return false;
+                stack.pop();
+            }
+        }
+
+        return stack.isEmpty();
+    }
+
+    private boolean isOpenBracket(char c) {
+        return c == '(' || c == '{' || c == '[';
+    }
+
     //Runtime
     //3
     //ms

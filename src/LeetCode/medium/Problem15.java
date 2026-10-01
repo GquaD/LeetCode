@@ -17,6 +17,48 @@ public class Problem15 {
         //LeetCodeUtils.printListWithListsOfIntegers(threeSum(nums));
     }
 
+    //10min
+    //Runtime
+    //34
+    //ms
+    //Beats
+    //56.71%
+    //Memory
+    //59.42
+    //MB
+    //Beats
+    //23.88%
+    public List<List<Integer>> threeSum6(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        Arrays.sort(nums);
+        //O(NlogN)
+
+        for (int i = 0; i < nums.length - 2; i++) {
+            if (i > 0 && nums[i] == nums[i - 1]) continue;
+            findTriplets(i, nums, result);
+        }
+        //O(N^2)
+
+        return result;
+    }
+
+    private void findTriplets(int idx, int[] nums, List<List<Integer>> result) {
+        int left = idx + 1, right = nums.length - 1;
+
+        while (left < right) {
+            int sum = nums[idx] + nums[left] + nums[right];
+            if (sum == 0) {
+                result.add(List.of(nums[idx], nums[left], nums[right]));
+                left++;
+                while (left < right && nums[left] == nums[left - 1]) left++;
+            } else if (sum < 0) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+    }
+
     //https://leetcode.com/problems/3sum/solutions/2710157/java-o-n-log-n-n-n-log-n-solution/
     //Runtime
     //1618 ms

@@ -13,6 +13,35 @@ public class Problem11 {
         System.out.println(maxArea(new int[]{1,2,3,4,5,25,24,3,4})); //
     }
 
+    //5min
+    //Runtime
+    //5
+    //ms
+    //Beats
+    //82.54%
+    //Memory
+    //76.99
+    //MB
+    //Beats
+    //95.45%
+    public int maxArea6(int[] height) {
+        int left = 0, right = height.length - 1, maxArea = 0;
+
+        while (left < right) {
+            int h = Math.min(height[left], height[right]), area = h * (right - left);
+
+            maxArea = Math.max(maxArea, area);
+
+            if (height[left] <= height[right]) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+
+        return maxArea;
+    }
+
     //Runtime
     //5
     //ms

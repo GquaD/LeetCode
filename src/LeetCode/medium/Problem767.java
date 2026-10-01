@@ -17,6 +17,59 @@ public class Problem767 {
         System.out.println(reorganizeString("aaab"));
     }
 
+    //10min
+    //found the max freq character and placed it every other position
+    //then did the same to the next one
+    //plus if the most freq character has freq larger than a have, then impossible
+     //Runtime
+    //1
+    //ms
+    //Beats
+    //96.15%
+    //Memory
+    //42.76
+    //MB
+    //Beats
+    //89.96%
+    public String reorganizeString2(String s) {
+        int[] counts = new int[26];
+        int max = 0, maxIdx = 0, idx = 0;
+
+        for (int i = 0; i < s.length(); i++) {
+            int pos = s.charAt(i) - 'a';
+            counts[pos]++;
+            if (counts[pos] > max) {
+                max = counts[pos];
+                maxIdx = pos;
+            }
+        }
+
+        if (counts[maxIdx] > (s.length() + 1) / 2)
+            return "";
+
+        char[] result = new char[s.length()];
+
+        while (counts[maxIdx] > 0) {
+            result[idx] = (char) (maxIdx + 'a');
+            idx += 2;
+            counts[maxIdx]--;
+        }
+
+        for (int i = 0; i < counts.length; i++) {
+            char c = (char) (i + 'a');
+            while (counts[i] > 0) {
+                if (idx >= s.length())
+                    idx = 1;
+                result[idx] = c;
+                counts[i]--;
+                idx += 2;
+            }
+
+        }
+
+        return new String(result);
+    }
+
     //https://leetcode.com/problems/reorganize-string/solutions/6434251/java-hashmap-max-heap-solution-by-tbekpr-xlax/
     //15min
     //Runtime

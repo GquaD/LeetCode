@@ -19,6 +19,66 @@ public class Problem14 {
 
     }
 
+    //10min
+    //Runtime
+    //2
+    //ms
+    //Beats
+    //16.58%
+    //Memory
+    //43.72
+    //MB
+    //Beats
+    //7.98%
+
+    /*
+    class Solution {
+    public String longestCommonPrefix(String[] strs) {
+        int len = strs.length;
+        TrieNode head = new TrieNode(), temp;
+        StringBuilder sb = new StringBuilder();
+        for (String s: strs) {
+            temp = head;
+            for (int i = 0; i < s.length(); i++) {
+                int idx = s.charAt(i) - 'a';
+                TrieNode cur = temp.getChildren()[idx];
+                if (cur == null) {
+                    cur = new TrieNode();
+                    temp.getChildren()[idx] = cur;
+                }
+                cur.increment();
+                if (cur.getCount() == len) sb.append(s.charAt(i));
+                temp = cur;
+            }
+        }
+
+        return sb.toString();
+    }
+}
+
+class TrieNode {
+    private TrieNode[] children;
+    private int count;
+
+    public TrieNode() {
+        children = new TrieNode[26];
+        count = 0;
+    }
+
+    public TrieNode[] getChildren() {
+        return children;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void increment() {
+        count++;
+    }
+}
+*/
+
     //https://leetcode.com/problems/longest-common-prefix/solutions/8519989/java-trie-hard-solution-by-tbekpro-6lw5/
     //Runtime
     //3

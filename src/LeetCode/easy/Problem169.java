@@ -30,6 +30,29 @@ public class Problem169 {
         System.out.println("eight: " + majorityElementNewAlgorithm(eight));
     }
 
+    //2min
+    //Runtime
+    //2
+    //ms
+    //Beats
+    //74.73%
+    //Memory
+    //63.35
+    //MB
+    //Beats
+    //7.89%
+    public int majorityElement3(int[] nums) {
+        int count = 0, candidate = 0;
+
+        for (int n: nums) {
+            if (count == 0) candidate = n;
+            if (n == candidate) count++;
+            else count--;
+        }
+
+        return candidate;
+    }
+
     //5min
     //Runtime
     //15

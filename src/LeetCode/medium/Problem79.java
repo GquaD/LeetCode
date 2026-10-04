@@ -16,6 +16,77 @@ public class Problem79 {
 
     }
 
+    //1hour
+    //Runtime
+    //132
+    //ms
+    //Beats
+    //60.57%
+    //Memory
+    //42.80
+    //MB
+    //Beats
+    //75.23%
+    public boolean exist3(char[][] board, String word) {
+        List<Pair> list = new ArrayList<>();
+        int rows = board.length, cols = board[0].length;
+
+        for (int r = 0; r < rows; r++) {
+            for (int c = 0; c < cols; c++) {
+                if (board[r][c] == word.charAt(0)) {
+                    list.add(new Pair(r, c));
+                }
+            }
+        }
+
+        for (Pair p: list) {
+            boolean[][] visited = new boolean[rows][cols];
+            boolean[] found = new boolean[1];
+            traverse(board, p.row, p.col, visited, found, word, 0);
+            if (found[0]) return true;
+        }
+
+        return false;
+    }
+
+    private void traverse(char[][] board, int row, int col, boolean[][] visited, boolean[] found, String word, int idx) {
+        if (idx == word.length() - 1) {
+            if (board[row][col] == word.charAt(idx)) {
+                found[0] = true;
+            }
+            return;
+        }
+
+        if (board[row][col] != word.charAt(idx)) return;
+
+        visited[row][col] = true;
+        idx++;
+        if (cellExists(row - 1, col, board.length, board[0].length) && !visited[row - 1][col])
+            traverse(board, row - 1, col, visited, found, word, idx);
+        if (cellExists(row, col + 1, board.length, board[0].length) && !visited[row][col + 1])
+            traverse(board, row, col + 1, visited, found, word, idx);
+        if (cellExists(row + 1, col, board.length, board[0].length) && !visited[row + 1][col])
+            traverse(board, row + 1, col, visited, found, word, idx);
+        if (cellExists(row, col - 1, board.length, board[0].length) && !visited[row][col - 1])
+            traverse(board, row, col - 1, visited, found, word, idx);
+
+        visited[row][col] = false;
+    }
+
+    private boolean cellExists(int row, int col, int rows, int cols) {
+        return row >= 0 && col >= 0 && row < rows && col < cols;
+    }
+
+
+class Pair {
+    int row, col;
+
+    public Pair(int r, int c) {
+        row = r;
+        col = c;
+    }
+}
+
     //https://leetcode.com/problems/word-search/solutions/2917186/java-readable-solution/
     //50min - 1 hour
     //Runtime

@@ -9,6 +9,34 @@ public class Problem1021 {
         System.out.println(removeOuterParentheses1("(()())(())(()(()))"));
         System.out.println(removeOuterParentheses1("()()"));
     }
+
+
+    //10min
+    //Runtime
+    //4
+    //ms
+    //Beats
+    //58.52%
+    //Memory
+    //43.52
+    //MB
+    //Beats
+    //56.87%
+    public String removeOuterParentheses2(String s) {
+        int lvl = 0;
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (c == '(') {
+                if (lvl++ > 0) sb.append(c);
+            } else {
+                if (lvl-- > 1) sb.append(c);
+            }
+        }
+
+        return sb.toString();
+    }
     //Runtime: 4 ms, faster than 80.23% of Java online submissions for Remove Outermost Parentheses.
     //Memory Usage: 43 MB, less than 52.74% of Java online submissions for Remove Outermost Parentheses.
     static String removeOuterParentheses1(String s) {

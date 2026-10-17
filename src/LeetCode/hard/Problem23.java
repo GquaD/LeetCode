@@ -26,6 +26,38 @@ public class Problem23 {
         System.out.println(mergeKLists(lists).val);
     }
 
+    //5min
+    //Runtime
+    //4
+    //ms
+    //Beats
+    //81.19%
+    //Memory
+    //46.43
+    //MB
+    //Beats
+    //90.61%
+    public ListNode mergeKLists4(ListNode[] lists) {
+        PriorityQueue<ListNode> pq = new PriorityQueue<>((a, b) -> a.val - b.val);
+        for (ListNode node: lists) {
+            while (node != null) {
+                pq.offer(node);
+                node = node.next;
+            }
+        }
+
+        if (pq.isEmpty()) return null;
+
+        ListNode head = pq.poll(), temp = head;
+        while (!pq.isEmpty()) {
+            temp.next = pq.poll();
+            temp = temp.next;
+        }
+
+        temp.next = null;
+        return head;
+    }
+
     //10min
     //Runtime
     //5

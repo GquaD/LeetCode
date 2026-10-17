@@ -14,6 +14,29 @@ public class Problem26 {
     //1
     //ms
     //Beats
+    //78.79%
+    //Memory
+    //46.14
+    //MB
+    //Beats
+    //97.61%
+    public int removeDuplicates3(int[] nums) {
+        int prev = nums[0], count = 1;
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] != prev) {
+                nums[count++] = nums[i];
+                prev = nums[i];
+            }
+        }
+
+        return count;
+    }
+
+    //2min
+    //Runtime
+    //1
+    //ms
+    //Beats
     //76.83%
     //Memory
     //46.90

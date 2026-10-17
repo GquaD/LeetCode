@@ -6,6 +6,56 @@ public class Problem21 {
 
     }
 
+
+    //5-10min
+    //Runtime
+    //0
+    //ms
+    //Beats
+    //100.00%
+    //Memory
+    //44.03
+    //MB
+    //Beats
+    //84.65%
+    public ListNode mergeTwoLists4(ListNode list1, ListNode list2) {
+        if (list1 == null) return list2;
+        if (list2 == null) return list1;
+
+        ListNode head, temp;
+
+        if (list1.val <= list2.val) {
+            temp = list1;
+            list1 = list1.next;
+        } else {
+            temp = list2;
+            list2 = list2.next;
+        }
+
+        head = temp;
+
+        while (temp != null) {
+            if (list1 != null && list2 != null) {
+                if (list1.val <= list2.val) {
+                    temp.next = list1;
+                    list1 = list1.next;
+                } else {
+                    temp.next = list2;
+                    list2 = list2.next;
+                }
+            } else if (list1 != null) {
+                temp.next = list1;
+                break;
+            } else {
+                temp.next = list2;
+                break;
+            }
+            temp = temp.next;
+        }
+
+        return head;
+    }
+
     //15min
     //Runtime
     //0

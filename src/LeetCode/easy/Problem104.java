@@ -5,6 +5,24 @@ public class Problem104 {
     public static void main(String[] args) {
 
     }
+
+
+    //2min
+    //Runtime
+    //1
+    //ms
+    //Beats
+    //11.85%
+    //Memory
+    //47.22
+    //MB
+    //Beats
+    //10.68%
+    public int maxDepth(TreeNode root) {
+        if (root == null) return 0;
+        return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
+    }
+
     //Runtime
     //0
     //ms
@@ -17,7 +35,7 @@ public class Problem104 {
     //Beats
     //61.73%
     static int max;
-    public static int maxDepth(TreeNode root) {
+    public static int maxDepth2(TreeNode root) {
         max = 0;
         findMaxDepth(root, 1);
         return max;
